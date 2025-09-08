@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="text-center mb-5">
+    <h1 class="display-4">Seja Bem Vindo(a) ao UnitCheck!</h1>
+    <p class="lead">Sua plataforma completa para gerenciar equipes e colaboradores.</p>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5 mb-4">
+            <div class="card text-center shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">Equipes Ativas</h5>
+                    <p class="card-text display-3">@ViewBag.TotalEquipes</p>
+                    <a asp-controller="Equipe" asp-action="Index" class="btn btn-primary mt-3">Ver Equipes</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 mb-4">
+            <div class="card text-center shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-success">Total de Colaboradores</h5>
+                    <p class="card-text display-3">@ViewBag.TotalColaboradores</p>
+                    <a asp-controller="Colaboradores" asp-action="Index" class="btn btn-success mt-3">Ver Colaboradores</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-5">
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h2 class="text-secondary mb-4">O que você pode fazer com o UnitCheck?</h2>
+            <p class="fs-5">
+                O UnitCheck simplifica a organização e o controle das suas equipes. Cadastre colaboradores, crie equipes,
+                e gerencie facilmente quem faz parte de cada grupo. Tenha uma visão clara da sua força de trabalho e otimize
+                a gestão dos seus projetos.
+            </p>
+            <div class="mt-4">
+                <a asp-controller="Equipe" asp-action="Criar" class="btn btn-outline-primary btn-lg me-3">
+                    <i class="bi bi-plus-circle"></i> Criar Nova Equipe
+                </a>
+                <a asp-controller="Colaboradores" asp-action="Criar" class="btn btn-outline-success btn-lg">
+                    <i class="bi bi-person-plus"></i> Adicionar Colaborador
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br>

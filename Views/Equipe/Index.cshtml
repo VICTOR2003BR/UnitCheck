@@ -1,0 +1,71 @@
+﻿@model List<EquipeModel>
+@{
+    ViewData["Title"] = "Total de Equipes";
+}
+
+<div class="text-center">
+
+    <h1 class="display-4">Total de Equipes</h1>
+
+    <div class="row mb-3">
+        <div class="col-md-6 text-left-md">
+            <a type="button" class="btn btn-success" asp-controller="Equipe" asp-action="Criar">Criar Equipe</a>
+        </div>
+        <div class="col-md-6">
+            <form asp-action="Index" method="get">
+                <div class="input-group">
+                    <input type="text" name="busca" class="form-control" placeholder="Buscar por nome ou líder..."
+                           value="@ViewBag.BuscaAtual">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                        <a asp-action="Index" class="btn btn-outline-danger">Limpar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Lider</th>
+                    <th scope="col">Local</th>
+                    <th scope="col">Qtd de Colaboradores</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var equipe in Model)
+                    {
+                        <tr>
+                            <th scope="row">@equipe.Nome</th>
+                            <td>@equipe.Lider</td>
+                            <td>@equipe.Local</td>
+                            <td>@equipe.Colaboradores.Count</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Ações da Equipe"> @* Use btn-group para alinhar melhor *@
+                                    <a type="button" class="btn btn-primary" asp-route-id="@equipe.Id" asp-controller="Equipe" asp-action="DetalhesEquipe">Ver Colaboradores</a>
+                                    <a type="button" class="btn btn-primary" asp-route-id="@equipe.Id" asp-controller="Equipe" asp-action="Editar">Editar</a>
+                                    <a type="button" class="btn btn-danger" asp-route-id="@equipe.Id" asp-controller="Equipe" asp-action="Deletar">Deletar</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5">Nenhuma Equipe cadastrada.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<br>

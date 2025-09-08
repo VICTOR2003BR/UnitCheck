@@ -1,0 +1,41 @@
+﻿@model UnitCheck.ViewModels.GerenciarColaboradoresViewModel
+
+@{
+    ViewData["Title"] = $"Gerenciar Colaboradores da Equipe: {Model.Equipe.Nome}";
+}
+
+<h1>Gerenciar Colaboradores da Equipe: @Model.Equipe.Nome</h1>
+
+<form asp-controller="Equipe" asp-action="SalvarColaboradores" method="post">
+    <input type="hidden" name="equipeId" value="@Model.Equipe.Id" />
+
+    <div class="form-group">
+        @if (Model.TodosColaboradores != null && Model.TodosColaboradores.Any())
+        {
+            @foreach (var item in Model.TodosColaboradores.OrderBy(c => c.Nome))
+            {
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="colaborador_@item.Id" name="selecionadosIds" @* MUITO IMPORTANTE: name deve ser "selecionadosIds" *@
+                    value="@item.Id" @(item.IsChecked ? "checked" : "")>
+                    <label class="form-check-label" for="colaborador_@item.Id">@item.Nome</label>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Nenhum colaborador disponível para adicionar.</p>
+        }
+    </div>
+
+    <div class="mt-4">
+        <a asp-controller="Equipe" asp-action="DetalhesEquipe" asp-route-id="@Model.Equipe.Id"
+            class="btn btn-secondary mr-2">Voltar</a>
+        <button type="submit" class="btn btn-success">Salvar Colaboradores</button>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

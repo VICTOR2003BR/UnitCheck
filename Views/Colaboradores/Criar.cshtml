@@ -1,0 +1,54 @@
+﻿@model ColaboradorModel
+@{
+    ViewData["Title"] = "Colaboradores";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Adicionar Colaborador</h1>
+
+    <form asp-controller="Colaboradores" asp-action="Criar" method="post">
+
+        <div class="formGrup">
+            <label for="nome">Nome</label>
+            <input type="text" asp-for="Nome" class="form-control" placeholder="Nome do colaborador">
+        </div>
+
+        <div class="formGrup">
+            <label for="funcao">Funcao</label>
+            <input type="text" asp-for="funcao" class="form-control" placeholder="Função do colaborador">
+        </div> 
+
+        <div class="formGrup">
+            <label for="Email">E-mail</label>
+            <input type="text" asp-for="Email" class="form-control" placeholder="E-mail do colaborador">
+        </div>
+
+        <div class="formGrup">
+            <label for="cpf">CPF</label>
+            <input type="text" asp-for="cpf" class="form-control" placeholder="CPF (somente números)" required
+            pattern="\d{11}" title="O CPF deve conter exatamente 11 dígitos numéricos.">
+        </div>
+
+        <div class="formGrup">
+            <label for="Telefone">Telefone</label>
+            <input type="tel" asp-for="Telefone" class="form-control" placeholder="Telefone (somente números)"
+            pattern="\d{10,11}" title="O telefone deve conter 10 ou 11 dígitos numéricos.">
+        </div>
+
+        <div class="formGrup">
+            <label for="matricula">Matricula</label>
+            <input type="text" asp-for="matricula" class="form-control" placeholder="Matricula do colaborador">
+        </div>
+
+        <div class="formGrup">
+            <label for="data_admissao">Data de Admissao</label>
+            <input type="date" asp-for="data_admissao" class="form-control" placeholder="Data de admissão do colaborador">
+        </div>
+        <br>
+
+        <a asp-controller="Colaboradores" asp-action="Index" class="btn btn-secondary">Voltar</a>
+        <button type="submit" class="btn btn-success">Concluido</button>
+
+    </form>
+
+</div>

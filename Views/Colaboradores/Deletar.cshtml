@@ -1,0 +1,20 @@
+﻿@model ColaboradorModel
+@{
+    ViewData["Title"] = "Confirmação de Exclusão";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Deseja realmente deletar o colaborador: <br /> @Model.Nome?</h1>
+    <p>Matrícula: @Model.matricula</p>
+    <p>CPF: @Model.cpf</p>
+    <p>Função: @Model.funcao</p>
+    
+    <div class="mt-4">
+        <a asp-controller="Colaboradores" asp-action="Index" class="btn btn-secondary">Não, Voltar para a Lista</a>
+
+        <form asp-controller="Colaboradores" asp-action="Deletar" method="post" style="display:inline;">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Sim, Deletar</button>
+        </form>
+    </div>
+</div>

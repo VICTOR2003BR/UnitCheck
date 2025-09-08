@@ -1,0 +1,405 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/* .navbar-brand{
+  width: 6%;
+  height: 6%;
+}
+
+.navbar-brand img{
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+}
+
+.container-fluid{
+  background: linear-gradient(150deg,rgb(112, 155, 223),rgb(32, 32, 189));
+}
+
+.navbar-nav{
+  width: 100%;
+}
+.navbar-collapse{
+  width: 100%;
+}
+
+.nav-item{
+  border: solid black 2px;
+  border-radius: 10px;
+  margin: 5px;
+  color: black;
+  display: flex;
+  justify-content: space-around;
+}
+
+ */
+
+ /* Importa a fonte do Google Fonts (opcional, mas recomendado para um visual moderno) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* --- Variáveis CSS para Cores (para facilitar a manutenção) --- */
+:root {
+    --primary-color: #007bff; /* Azul padrão do Bootstrap */
+    --secondary-color: #6c757d; /* Cinza do Bootstrap */
+    --success-color: #28a745; /* Verde do Bootstrap */
+    --danger-color: #dc3545; /* Vermelho do Bootstrap */
+    --info-color: #17a2b8; /* Ciano do Bootstrap */
+    --light-bg: #f8f9fa; /* Fundo claro */
+    --dark-text: #343a40; /* Texto escuro */
+    --light-text: #f0f0f0; /* Texto claro */
+    --border-color: #dee2e6; /* Cor da borda padrão */
+    --navbar-bg: #ffffff; /* Fundo da navbar */
+    --box-shadow: 0 .5rem 1rem rgba(0,0,0,.15); /* Sombra suave */
+}
+
+/* --- Estilos Globais e Reset Básico --- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* Aplica a fonte Poppins */
+    color: var(--dark-text);
+    background-color: var(--light-bg);
+    min-height: 100vh; /* Garante que o body ocupa 100% da altura da viewport */
+    display: flex;
+    flex-direction: column; /* Para o footer ficar no fim da página */
+}
+
+.container {
+    max-width: 960px; /* Limita a largura máxima do conteúdo */
+}
+
+/* Garante que o main ocupe o espaço restante */
+main {
+    flex: 1; /* Permite que o main cresça e ocupe o espaço disponível */
+    padding-top: 20px; /* Espaçamento superior */
+}
+
+/* --- Header e Navegação (Navbar) --- */
+header {
+    background-color: var(--navbar-bg);
+    box-shadow: var(--box-shadow); /* Adiciona uma sombra sutil ao header */
+    padding: 10px 0;
+}
+
+.navbar-brand {
+    padding: 0 1rem; /* Espaçamento em volta do logo */
+}
+
+.navbar-brand2 img {
+    height: 40px; /* Ajusta o tamanho do logo */
+    width: auto;
+}
+
+/* Centraliza os links da navbar em telas maiores */
+.navbar-nav {
+    justify-content: flex-end; /* Alinha os itens da nav para a direita em telas maiores */
+    width: 100%; /* Ocupa toda a largura disponível */
+}
+
+.nav-item .nav-link {
+    color: var(--dark-text) !important; /* Força a cor do texto para os links */
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-item .nav-link:hover {
+    color: var(--primary-color) !important; /* Cor ao passar o mouse */
+}
+
+/* Cor da borda da navbar e box-shadow */
+.navbar-light.bg-white.border-bottom.box-shadow.mb-3 {
+    border-bottom-color: var(--border-color) !important;
+    box-shadow: var(--box-shadow) !important;
+}
+
+/* --- Container e Títulos --- */
+.text-center {
+    text-align: center !important;
+}
+
+.display-4 {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem; /* Padrão para telas maiores */
+}
+
+@media (max-width: 767.98px) {
+    .display-4 {
+        font-size: 2rem; /* Menor em telas pequenas */
+    }
+}
+
+/* --- Botões e Ações --- */
+.btn {
+    font-weight: 600;
+    border-radius: 0.25rem; /* Bordas levemente arredondadas */
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    padding: 0.5rem 1rem;
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+    color: var(--light-text);
+}
+
+.btn-success:hover {
+    background-color: darken(var(--success-color), 10%); /* Escurece no hover */
+    border-color: darken(var(--success-color), 10%);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--light-text);
+}
+
+.btn-primary:hover {
+    background-color: darken(var(--primary-color), 10%);
+    border-color: darken(var(--primary-color), 10%);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
+    color: var(--light-text);
+}
+
+.btn-danger:hover {
+    background-color: darken(var(--danger-color), 10%);
+    border-color: darken(var(--danger-color), 10%);
+}
+
+.btn-outline-secondary {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--secondary-color);
+    color: var(--light-text);
+}
+
+.create-button-container {
+    margin-bottom: 20px;
+    text-align: left; /* Alinha o botão "Criar" à esquerda */
+}
+
+/* Ajusta o layout para a barra de pesquisa */
+.row.mb-3 {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem a linha */
+    align-items: center;
+    margin-bottom: 20px !important;
+}
+
+.row.mb-3 .col-md-6 {
+    padding: 5px; /* Espaçamento entre as colunas */
+}
+
+/* Em telas pequenas, alinhe os itens da row */
+@media (max-width: 767.98px) {
+    .row.mb-3 .col-md-6 {
+        flex: 0 0 100%; /* Ocupa a largura total */
+        max-width: 100%;
+        text-align: center; /* Centraliza o conteúdo (botão/pesquisa) */
+        margin-bottom: 10px;
+    }
+    .create-button-container {
+        text-align: center; /* Centraliza o botão criar em mobile */
+    }
+}
+
+
+/* --- Tabelas (Melhoria para Responsividade) --- */
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    box-shadow: var(--box-shadow); /* Sombra na tabela */
+    border-radius: 0.5rem; /* Bordas arredondadas na tabela */
+    overflow: hidden; /* Garante que a sombra e borda arredondada apareçam */
+}
+
+.table th, .table td {
+    padding: 12px 15px;
+    vertical-align: middle;
+    border-top: 1px solid var(--border-color);
+}
+
+.table thead th {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    font-weight: 600;
+    text-align: left;
+}
+
+.table tbody tr:nth-of-type(even) {
+    background-color: var(--light-bg); /* Zebra striping */
+}
+
+.table tbody tr:hover {
+    background-color: #e2f0fe; /* Cor ao passar o mouse na linha */
+}
+
+/* Responsividade da Tabela: Scroll Horizontal em Telas Pequenas */
+@media (max-width: 767.98px) {
+    .table-responsive {
+        display: block;
+        width: 100%;
+        overflow-x: auto; /* Adiciona scroll horizontal */
+        -webkit-overflow-scrolling: touch; /* Melhora o scroll em iOS */
+    }
+
+    .table {
+        min-width: 600px; /* Garante que a tabela não fique muito estreita */
+    }
+
+    /* Ajusta o espaçamento dos botões em telas pequenas */
+    .table .btn-group {
+        display: flex;
+        flex-direction: column; /* Botões empilhados */
+        gap: 5px; /* Espaçamento entre os botões */
+    }
+
+    .table .btn {
+        width: 100%; /* Botões ocupam a largura total */
+        margin-bottom: 5px; /* Espaçamento entre os botões */
+    }
+}
+
+/* --- Formulários e Input Groups --- */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-control {
+    border-color: var(--border-color);
+    box-shadow: none;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25); /* Sombra de foco azul */
+}
+
+.input-group .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.input-group .form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* --- Footer --- */
+.footer {
+    background-color: var(--dark-text); /* Fundo escuro */
+    color: var(--light-text); /* Texto claro */
+    padding: 1rem 0;
+    text-align: center;
+    margin-top: auto; /* Empurra o footer para o final da página */
+}
+
+.footer a {
+    color: var(--info-color); /* Cor dos links no footer */
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* --- Classes utilitárias Bootstrap personalizadas (se necessário) --- */
+/* Exemplo de uma classe para alinhar o texto à esquerda em colunas específicas */
+.text-left-md {
+    text-align: left;
+}
+@media (max-width: 767.98px) {
+    .text-left-md {
+        text-align: center; /* Centraliza em mobile */
+    }
+}
+
+/* Ajustes para DetalhesEquipe e GerenciarColaboradores (se precisar de estilo específico) */
+/* Por exemplo, para cards de detalhes */
+.card-custom {
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    box-shadow: var(--box-shadow);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-title {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.list-group-item {
+    background-color: transparent;
+    border: none;
+    padding-left: 0;
+}
+
+.list-group-item strong {
+    color: var(--dark-text);
+}
+
+ .card.shadow-sm {
+        border: none; /* Remove a borda padrão do card */
+        border-radius: 0.75rem; /* Bordas mais arredondadas */
+    }
+    .card .card-title {
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+    .card .card-text.display-3 {
+        font-size: 4rem; 
+        font-weight: 700;
+        line-height: 1; 
+        margin-bottom: 0.5rem;
+    }
+    .lead {
+        font-size: 1.25rem;
+        color: var(--dark-text);
+    }
+    .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1.25rem;
+    }
+    .btn i {
+        margin-right: 8px;
+    }

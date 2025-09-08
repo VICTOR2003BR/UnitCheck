@@ -1,0 +1,85 @@
+﻿@model UnitCheck.Models.EquipeModel
+
+@{
+    ViewData["Title"] = $"Detalhes da Equipe: {Model.Nome}";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Detalhes da Equipe</h1>
+
+    <div class="card my-4 text-left">
+        <div class="card-header">
+            <h4 class="card-title">Informações da Equipe</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                @* <dt class="col-sm-4">ID:</dt>
+                <dd class="col-sm-8">@Model.Id</dd> *@
+
+                <dt class="col-sm-4">Nome da Equipe:</dt>
+                <dd class="col-sm-8">@Model.Nome</dd>
+
+                <dt class="col-sm-4">Líder:</dt>
+                <dd class="col-sm-8">@Model.Lider</dd>
+
+                <dt class="col-sm-4">Descrição:</dt>
+                <dd class="col-sm-8">
+                    @(string.IsNullOrEmpty(Model.Descricao) ? "Não informada" : Model.Descricao)
+                </dd>
+
+                <dt class="col-sm-4">Local:</dt>
+                <dd class="col-sm-8">
+                       @(string.IsNullOrEmpty(Model.Local) ? "Não informado" : Model.Local)
+                </dd>
+
+                <dt class="col-sm-4">Quantidade de Colaboradores:</dt>
+                <dd class="col-sm-8">
+                    @(Model.Colaboradores?.Count ?? 0)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <hr />
+
+    <h3 class="my-4">Colaboradores Associados</h3>
+
+    @if (Model.Colaboradores != null && Model.Colaboradores.Any())
+    {
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Matrícula</th>
+                    <th>Nome</th>
+                    <th>Função</th>
+                    <th>CPF</th>
+                    @* <th>Telefone</th> *@
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var colaborador in Model.Colaboradores.OrderBy(c => c.Nome))
+                {
+                    <tr>
+                        <td>@colaborador.matricula</td>
+                        <td>@colaborador.Nome</td>
+                        <td>@colaborador.funcao</td>
+                        <td>@colaborador.cpf</td>
+                        @* <td>@colaborador.Telefone</td> *@
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            Esta equipe não possui colaboradores associados.
+        </div>
+    }
+
+    <div class="mt-4">
+        <a asp-controller="Equipe" asp-action="GerenciarColaboradores" asp-route-id="@Model.Id" class="btn btn-info mr-2">Gerenciar Colaboradores</a>
+        <a asp-controller="Equipe" asp-action="Index" class="btn btn-secondary">Voltar para a Lista de Equipes</a>
+    </div>
+</div>
+<br><br><br>

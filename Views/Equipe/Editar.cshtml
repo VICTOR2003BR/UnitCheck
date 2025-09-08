@@ -1,0 +1,57 @@
+﻿@model UnitCheck.ViewModels.EditarEquipeViewModel
+@{
+    ViewData["Title"] = "Editar Equipe";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Editar Equipe</h1>
+
+    <form asp-controller="Equipe" asp-action="Editar" method="post">
+
+        <input type="hidden" asp-for="Equipe.Id" /> 
+
+        <div class="form-group">
+            <label asp-for="Equipe.Nome">Nome da Equipe</label>
+            <input type="text" asp-for="Equipe.Nome" class="form-control" placeholder="Nome da Equipe" required>
+            <span asp-validation-for="Equipe.Nome" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Equipe.Local">Local</label>
+            <input type="text" asp-for="Equipe.Local" class="form-control" placeholder="Local da Equipe">
+            <span asp-validation-for="Equipe.Local" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Equipe.Descricao">Descrição</label>
+            <textarea asp-for="Equipe.Descricao" class="form-control" rows="3" placeholder="Breve descrição da equipe"></textarea>
+            <span asp-validation-for="Equipe.Descricao" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="LiderIdSelecionado">Líder</label>
+            <select asp-for="LiderIdSelecionado" class="form-control">
+                <option value="">-- Selecione um Líder (Opcional) --</option>
+                @if (Model.ColaboradoresDisponiveis != null && Model.ColaboradoresDisponiveis.Any())
+                {
+                    @foreach (var colaborador in Model.ColaboradoresDisponiveis.OrderBy(c => c.Nome))
+                    {
+                        <option value="@colaborador.Id">@colaborador.Nome</option> 
+                    }
+                }
+            </select>
+            <span asp-validation-for="LiderIdSelecionado" class="text-danger"></span>
+        </div>
+
+        <div class="mt-4">
+            <a asp-controller="Equipe" asp-action="Index" class="btn btn-secondary mr-2">Voltar</a>
+            <button type="submit" class="btn btn-success">Salvar Alterações</button>
+        </div>
+
+    </form>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,17 @@
+﻿@model EquipeModel
+@{
+    ViewData["Title"] = "Confirmação de Exclusão";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Deseja realmente deletar a equipe: <br /> @Model.Nome?</h1>
+    
+    <div class="mt-4">
+        <a asp-controller="Equipe" asp-action="Index" class="btn btn-secondary">Não, Voltar para a Equipes</a>
+
+        <form asp-controller="Equipe" asp-action="Deletar" method="post" style="display:inline;">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Sim, Deletar</button>
+        </form>
+    </div>
+</div>

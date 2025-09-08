@@ -1,0 +1,70 @@
+﻿@model List<ColaboradorModel>
+@{
+    ViewData["Title"] = "Total de Colaboradores";
+}
+
+<div class="text-center">
+
+    <h1 class="display-4">Total de Colaboradores</h1>
+
+    <div class="row mb-3">
+        <div class="col-md-6 text-left-md">
+            <a type="button" class="btn btn-success" asp-controller="Colaboradores" asp-action="Criar">Adicionar Colaborador</a>
+        </div>
+        <div class="col-md-6">
+            <form asp-action="Index" method="get">
+                <div class="input-group">
+                    <input type="text" name="busca" class="form-control" placeholder="Buscar por nome, função ou matrícula..."
+                            value="@ViewBag.BuscaAtual">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                        <a asp-action="Index" class="btn btn-outline-danger">Limpar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Matrícula</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Função</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var colaborador in Model)
+                    {
+                        <tr>
+                            <th scope="row">@colaborador.matricula</th>
+                            <td>@colaborador.Nome</td>
+                            <td>@colaborador.funcao</td>
+                            <td>@colaborador.cpf</td>
+                            <td>@colaborador.Telefone</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Ações do Colaborador"> @* Use btn-group *@
+                                    <a type="button" class="btn btn-primary" asp-route-id="@colaborador.Id" asp-controller="Colaboradores" asp-action="Editar">Editar</a>
+                                    <a type="button" class="btn btn-danger" asp-route-id="@colaborador.Id" asp-controller="Colaboradores" asp-action="Deletar">Deletar</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }else
+                {
+                    <tr>
+                        <td colspan="6">Nenhum colaborador cadastrado.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<br>

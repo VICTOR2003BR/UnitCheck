@@ -1,0 +1,68 @@
+﻿@model ColaboradorModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Editar Colaborador</h1>
+
+    <form asp-controller="Colaboradores" asp-action="atualizar" method="post"> 
+        <input type="hidden" asp-for="Id" />
+
+        <div class="formGrup">
+            <label asp-for="Nome">Nome</label> <input type="text" asp-for="Nome" class="form-control"
+                placeholder="Nome do colaborador">
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+
+        <div class="formGrup">
+            <label asp-for="funcao">Função</label>
+            <input type="text" asp-for="funcao" class="form-control" placeholder="Função do colaborador">
+            <span asp-validation-for="funcao" class="text-danger"></span>
+        </div>
+
+        <div class="formGrup">
+            <label asp-for="Email">E-mail</label>
+            <input type="text" asp-for="Email" class="form-control" placeholder="E-mail do colaborador">
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="formGrup">
+            <label asp-for="cpf">CPF</label>
+            <input type="text" asp-for="cpf" class="form-control" placeholder="CPF (somente números)" required
+            pattern="\d{11}" title="O CPF deve conter exatamente 11 dígitos numéricos.">
+            <span asp-validation-for="cpf" class="text-danger"></span>
+        </div>
+
+        <div class="formGrup">
+            <label asp-for="Telefone">Telefone</label>
+            <input type="tel" asp-for="Telefone" class="form-control" placeholder="Telefone (somente números)"
+            pattern="\d{10,11}" title="O telefone deve conter 10 ou 11 dígitos numéricos.">
+            <span asp-validation-for="Telefone" class="text-danger"></span>
+        </div>
+
+        <div class="formGrup">
+            <label asp-for="matricula">Matrícula</label>
+            <input type="text" asp-for="matricula" class="form-control" placeholder="Matrícula do colaborador">
+            <span asp-validation-for="matricula" class="text-danger"></span>
+        </div>
+
+        <div class="formGrup">
+            <label asp-for="data_admissao">Data de Admissão</label>
+            <input type="date" asp-for="data_admissao" class="form-control"> <span asp-validation-for="data_admissao"
+                class="text-danger"></span>
+        </div>
+
+         <div class="form-group mt-3">
+            <a asp-controller="Colaboradores" asp-action="Index" class="btn btn-secondary">Voltar</a>
+            <button type="submit" class="btn btn-success">Salvar Alterações</button>
+        </div>
+
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
