@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\IMG\\check.png"
     },
     {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\IMG\\logo.png",
+      "PackagePath": "staticwebassets\\IMG\\logo.png"
+    },
+    {
       "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

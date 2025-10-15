@@ -1,25 +1,24 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using UnitCheck.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace UnitCheck.Data
 {
-    public class BancoContext : DbContext
+    public class BancoContext : IdentityDbContext<IdentityUser>
     {
         public BancoContext(DbContextOptions<BancoContext> options) : base(options)
         {
         }
 
+        // Seus DbSets existentes
         public DbSet<ColaboradorModel> Colaboradores { get; set; }
         public DbSet<EquipeModel> Equipes { get; set; }
-        //public DbSet<ListaDePresencaModel> ListasDePresenca { get; set; }
-        //public DbSet<ColaboradorPresencaModel> ColaboradoresPresenca { get; set; }
 
-
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
 

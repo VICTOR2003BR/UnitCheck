@@ -2,9 +2,13 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using UnitCheck.Models;
 using UnitCheck.Repository;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace UnitCheck.Controllers;
 
+//[Authorize]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
