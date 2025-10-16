@@ -17,8 +17,6 @@ O UnitCheck nasce como uma solução web robusta para centralizar e simplificar 
 
 Este projeto é uma aplicação web desenvolvida em **ASP.NET Core MVC** que simula um sistema de gerenciamento de equipes e seus colaboradores. Ele permite realizar operações CRUD (Create, Read, Update, Delete) completas para **Equipes** e **Colaboradores**, além de gerenciar a associação de colaboradores a equipes.
 
-O UnitCheck é uma aplicação web completa desenvolvida utilizando o stack ASP.NET Core MVC. Ele implementa um sistema de gerenciamento de equipes e colaboradores que suporta as operações fundamentais de CRUD (Create, Read, Update, Delete) para ambas as entidades, além de gerenciar a complexa relação muitos-para-muitos entre elas.
-
 ## 📄 Arquitetura e Estrutura:
 
 O projeto segue o padrão Model-View-Controller (MVC), promovendo a separação de responsabilidades. A persistência de dados é gerenciada pelo Entity Framework Core 8.0, atuando como um ORM (Object-Relational Mapper), o que garante a robustez e portabilidade da aplicação.
