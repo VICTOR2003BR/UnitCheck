@@ -5,6 +5,42 @@
       "PackagePath": "staticwebassets\\UnitCheck.bundle.scp.css"
     },
     {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\IMG\\Screenshots\\Captura_de_tela_UnitCheck_pagina_de_colaboradores.png",
+      "PackagePath": "staticwebassets\\IMG\\Screenshots\\Captura_de_tela_UnitCheck_pagina_de_colaboradores.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\IMG\\Screenshots\\Captura_de_tela_UnitCheck_pagina_de_colaboradores_da_equipe.png",
+      "PackagePath": "staticwebassets\\IMG\\Screenshots\\Captura_de_tela_UnitCheck_pagina_de_colaboradores_da_equipe.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\IMG\\Screenshots\\Captura_de_tela_UnitCheck_pagina_de_criar_equipe.png",
+      "PackagePath": "staticwebassets\\IMG\\Screenshots\\Captura_de_tela_UnitCheck_pagina_de_criar_equipe.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\IMG\\Screenshots\\Captura_de_tela_UnitCheck_pagina_de_detalhes_da_equipe.png",
+      "PackagePath": "staticwebassets\\IMG\\Screenshots\\Captura_de_tela_UnitCheck_pagina_de_detalhes_da_equipe.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\IMG\\Screenshots\\Captura_de_tela_UnitCheck_pagina_de_editar_colaborador.png",
+      "PackagePath": "staticwebassets\\IMG\\Screenshots\\Captura_de_tela_UnitCheck_pagina_de_editar_colaborador.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\IMG\\Screenshots\\Captura_de_tela_UnitCheck_pagina_de_editar_equipe.png",
+      "PackagePath": "staticwebassets\\IMG\\Screenshots\\Captura_de_tela_UnitCheck_pagina_de_editar_equipe.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\IMG\\Screenshots\\Captura_de_tela_UnitCheck_pagina_de_equipes.png",
+      "PackagePath": "staticwebassets\\IMG\\Screenshots\\Captura_de_tela_UnitCheck_pagina_de_equipes.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\IMG\\Screenshots\\Captura_de_tela_UnitCheck_pagina_inicial.png",
+      "PackagePath": "staticwebassets\\IMG\\Screenshots\\Captura_de_tela_UnitCheck_pagina_inicial.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\IMG\\Screenshots\\Captura_de_tela_UnitChek_pagina_de_adicionar_colaborador.png",
+      "PackagePath": "staticwebassets\\IMG\\Screenshots\\Captura_de_tela_UnitChek_pagina_de_adicionar_colaborador.png"
+    },
+    {
       "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\IMG\\check.png",
       "PackagePath": "staticwebassets\\IMG\\check.png"
     },
