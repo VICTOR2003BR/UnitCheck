@@ -7,10 +7,13 @@
     ViewData["Title"] = "Register";
 }
 
+<div class="form-page-container"> @* <-- CONTAINER *@
+    <div class="form-card"> @* <-- CARD *@
+
 <h1>@ViewData["Title"]</h1>
 
-<div class="row">
-    <div class="col-md-4">
+@* <div class="row">
+    <div class="col-md-12"> *@
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h2>Crie uma nova conta.</h2>
             <hr />
@@ -32,8 +35,11 @@
             </div>
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Registrar</button>
         </form>
-    </div>
-</div>
+    @* </div>
+</div> *@
+
+</div> @* <-- FIM DO form-card *@
+</div> @* <-- FIM DO form-page-container *@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

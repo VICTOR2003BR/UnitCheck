@@ -1,0 +1,51 @@
+@model UnitCheck.Models.LeaderCreationViewModel
+
+@{
+    ViewData["Title"] = "Criar Novo Líder de Equipe";
+}
+
+<div class="form-page-container"> @* <-- CONTAINER *@
+    <div class="form-card"> @* <-- CARD *@
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+@* <div class="row">
+    <div class="col-md-12"> *@
+        <form asp-action="CreateLeader">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ConfirmPassword" class="form-label"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Criar Líder" class="btn btn-primary" />
+                <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Voltar</a>
+            </div>
+        </form>
+    @* </div>
+</div> *@
+
+</div> @* <-- FIM DO form-card *@
+</div> @* <-- FIM DO form-page-container *@
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -14,14 +14,21 @@ namespace UnitCheck.Data
 
             // 1. Criar a Role "Admin" se ela não existir
             string adminRole = "Admin";
+            string leaderRole = "LiderDeEquipe"; // Nova Role!
+
             if (await roleManager.FindByNameAsync(adminRole) == null)
             {
                 await roleManager.CreateAsync(new IdentityRole(adminRole));
             }
 
+            if (await roleManager.FindByNameAsync(leaderRole) == null) // Verifica e cria a nova Role
+            {
+                await roleManager.CreateAsync(new IdentityRole(leaderRole));
+            }
+
             // 2. Criar o primeiro usuário Administrador se ele não existir
-            string adminEmail = "admin@unitcheck.com.br"; 
-            string adminPassword = "AdminPassword123*"; // MUDE ESTA SENHA DE SEGURANÇA!
+            string adminEmail = "admin@unitcheck.com.br";
+            string adminPassword = "AdminPassword123*"; //SENHA DE SEGURANÇA!
 
             if (await userManager.FindByEmailAsync(adminEmail) == null)
             {

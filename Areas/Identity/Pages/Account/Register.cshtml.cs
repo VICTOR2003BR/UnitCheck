@@ -2,9 +2,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
+// Adicionando o using para usar o RoleManager
+using Microsoft.AspNetCore.Identity; 
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -19,15 +19,18 @@ namespace UnitCheck.Areas.Identity.Pages.Account
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
+        private readonly RoleManager<IdentityRole> _roleManager; // <-- 1. CAMPO ADICIONADO
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
-            ILogger<RegisterModel> logger)
+            ILogger<RegisterModel> logger,
+            RoleManager<IdentityRole> roleManager) // <-- 2. PARÂMETRO ADICIONADO AO CONSTRUTOR
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _roleManager = roleManager; // <-- 3. ATRIBUIÇÃO ADICIONADA
         }
 
         [BindProperty]
@@ -65,17 +68,31 @@ namespace UnitCheck.Areas.Identity.Pages.Account
             
             if (ModelState.IsValid)
             {
-                // Cria uma nova instância de IdentityUser (usuário padrão)
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email, EmailConfirmed = true };
-                
-                // Cria o usuário e insere no banco de dados
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("Novo usuário criado com sucesso.");
 
-                    // Faz o login do novo usuário
+                    // #############################################################
+                    // # 4. LÓGICA DE ATRIBUIÇÃO DA ROLE "ADMIN" ADICIONADA AQUI #
+                    // #############################################################
+                    
+                    // Verifica se a Role "Admin" existe
+                    if (await _roleManager.RoleExistsAsync("Admin"))
+                    {
+                        // Atribui a Role "Admin" ao novo usuário
+                        await _userManager.AddToRoleAsync(user, "Admin");
+                        _logger.LogInformation($"Usuário {user.UserName} criado e atribuído à Role 'Admin'.");
+                    }
+                    else
+                    {
+                        _logger.LogError("Falha ao atribuir Role: A Role 'Admin' não foi encontrada.");
+                    }
+                    
+                    // #############################################################
+
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);
                 }
@@ -85,7 +102,6 @@ namespace UnitCheck.Areas.Identity.Pages.Account
                 }
             }
 
-            // Se o ModelState não for válido, exibe o formulário novamente
             return Page();
         }
     }

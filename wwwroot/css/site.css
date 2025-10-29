@@ -60,7 +60,7 @@ body {
 /* --- Variáveis CSS para Cores (para facilitar a manutenção) --- */
 :root {
     --primary-color: #007bff; /* Azul padrão do Bootstrap */
-    --secondary-color: #6c757d; /* Cinza do Bootstrap */
+    --secondary-color: #181b1d; /* Cinza do Bootstrap */
     --success-color: #28a745; /* Verde do Bootstrap */
     --danger-color: #dc3545; /* Vermelho do Bootstrap */
     --info-color: #17a2b8; /* Ciano do Bootstrap */
@@ -403,3 +403,68 @@ header {
     .btn i {
         margin-right: 8px;
     }
+
+    /* --- Estilos para Páginas de Formulário (Login, Registrar, Criar Líder) --- */
+
+/* Centraliza o conteúdo da View em páginas de formulário */
+.form-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinha ao topo para evitar que fique no meio em telas grandes */
+    min-height: 80vh; /* Garante espaço suficiente */
+    padding-top: 50px; /* Espaçamento do topo */
+}
+
+/* Estiliza o Card de Formulário (Login/Registro/Criação) */
+.form-card {
+    background-color: #ffffff; /* Fundo branco limpo */
+    padding: 30px 40px;
+    border-radius: 1rem; /* Bordas arredondadas fortes */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Sombra mais destacada para o card */
+    max-width: 450px; /* Limita a largura do formulário */
+    width: 100%;
+    margin: 20px; /* Espaçamento geral */
+}
+
+/* Título dentro do formulário */
+.form-card h1, .form-card h2 {
+    font-weight: 700;
+    color: var(--dark-text);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Linha divisória */
+.form-card hr {
+    border-color: var(--border-color);
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Links secundários (Registrar, Esqueceu a Senha) */
+.form-card p a {
+    color: var(--primary-color);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.form-card p a:hover {
+    color: darken(var(--primary-color), 10%);
+    text-decoration: underline;
+}
+
+/* Ajuste para o botão principal de login/cadastro */
+.form-card .btn-lg {
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    margin-top: 1rem;
+}
+
+/* Melhoria para campos de validação */
+.form-control.is-invalid {
+    border-color: var(--danger-color);
+}
+.text-danger {
+    font-size: 0.85rem;
+}

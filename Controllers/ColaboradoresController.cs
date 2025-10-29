@@ -4,9 +4,12 @@ using UnitCheck.Models;
 using UnitCheck.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace UnitCheck.Controllers;
 
+[Authorize(Roles = "Admin, LiderDeEquipe")]
 public class ColaboradoresController : Controller
 {
     private readonly IColaboradorRepository colaborador_Repository;

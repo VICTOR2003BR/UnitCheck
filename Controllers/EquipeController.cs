@@ -6,9 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnitCheck.ViewModels;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace UnitCheck.Controllers;
 
+[Authorize(Roles = "Admin, LiderDeEquipe")]
 public class EquipeController : Controller
 {
     private readonly ILogger<EquipeController> _logger;

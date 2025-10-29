@@ -31,7 +31,14 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
-    options.LoginPath = "/Identity/Account/Login";
+    // Caminho para onde redirecionar se o usuário NÃO estiver logado e tentar acessar uma página protegida
+    options.LoginPath = "/Identity/Account/Login"; 
+    
+    // Caminho para onde redirecionar o usuário após o logout bem-sucedido
+    options.LogoutPath = "/Identity/Account/Login"; 
+    
+    // Opcional: Caminho para onde redirecionar em caso de Acesso Negado (403)
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
 });
 
 
