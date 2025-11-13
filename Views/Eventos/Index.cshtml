@@ -1,0 +1,100 @@
+﻿@model List<EventoModel>
+
+@{
+    ViewData["Title"] = "Eventos";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="display-4">Eventos e Atividades</h1>
+    <a asp-controller="Evento" asp-action="Criar" class="btn btn-primary btn-lg">
+        <i class="bi bi-plus-circle-fill"></i> Criar Novo Evento
+    </a>
+</div>
+
+<hr />
+
+<div class="row">
+
+    <div class="col-md-7">
+        <h2>Pendentes</h2>
+        
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Evento</th>
+                            <th>Tipo</th>
+                            <th>Prioridade</th>
+                            <th>Equipe</th>
+                            <th>Data Criação</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var evento in Model)
+                        {
+                            <tr>
+                                <td>@evento.Nome</td>
+                                <td>@evento.Tipo</td>
+                                <td>@evento.nivelPrioridade</td>
+                                <td>@(evento.Equipe?.Nome ?? "N/A")</td>
+                                <td>@evento.data_criacao.ToShortDateString()</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a asp-action="Detalhes" asp-route-id="@evento.Id" class="btn btn-sm btn-info">Ver</a>
+                                        <a asp-action="Editar" asp-route-id="@evento.Id" class="btn btn-sm btn-warning">Editar</a>
+                                        <a asp-action="Deletar" asp-route-id="@evento.Id" class="btn btn-sm btn-danger">Excluir</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">Nenhum evento ou atividade pendente encontrado.</div>
+        }
+    </div>
+
+ <div class="col-md-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Calendário de Eventos</h5>
+        </div>
+        
+        <div class="card-body" id="calendario-container">
+            <p>Aqui será implementado o calendário visual.</p>
+            <p>A data atual é: **@DateTime.Now.ToShortDateString()**</p>
+            
+            <script>
+                @{
+                    var eventosJson = Html.Raw(Json.Serialize(Model.Select(e => new { 
+                                        nome = e.Nome, 
+                                        data = e.data_finalizacao.HasValue ? e.data_finalizacao.Value.ToString("yyyy-MM-dd") : null,
+                                        tipo = e.Tipo,
+                                        id = e.Id
+                                    })));
+                }
+                var todosEventos = @eventosJson;
+                console.log(todosEventos);
+            </script>
+            
+        </div>
+    </div>
+</div>
+
+</div>
+
+@section Scripts {
+    <script>
+        // Exemplo de como você usaria o JS para destacar datas
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('calendario-container');
+            // Logica para gerar o HTML do calendário com as datas dos eventos em destaque
+        });
+    </script>
+}

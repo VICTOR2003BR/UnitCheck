@@ -14,6 +14,7 @@ namespace UnitCheck.Data
         // Seus DbSets existentes
         public DbSet<ColaboradorModel> Colaboradores { get; set; }
         public DbSet<EquipeModel> Equipes { get; set; }
+        public DbSet<EventoModel> Eventos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

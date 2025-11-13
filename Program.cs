@@ -14,6 +14,8 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddControllers();
 
+builder.Services.AddScoped<IEventoRepository, EventoRepository>();
+
 string? mySqlConnection = builder.Configuration.GetConnectionString("DefaultDatabase");
 
 builder.Services.AddDbContext<BancoContext>(opt =>

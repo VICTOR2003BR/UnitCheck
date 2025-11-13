@@ -1,0 +1,43 @@
+@model UnitCheck.Models.EventoModel
+
+@{
+    ViewData["Title"] = "Excluir Evento/Atividade";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h1 class="display-4 text-danger">Excluir Evento/Atividade</h1>
+        <p class="lead">Confirmação de exclusão do registro.</p>
+        <hr />
+
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">⚠️ Atenção! Esta ação é irreversível.</h4>
+            <p>Você está prestes a excluir permanentemente o seguinte evento/atividade:</p>
+            <h3 class="mt-3">@Model.Nome</h3>
+            <hr>
+            <p class="mb-0">Confirme para prosseguir com a exclusão.</p>
+        </div>
+
+        <dl class="row mb-4">
+            <dt class="col-sm-4">Equipe Associada:</dt>
+            <dd class="col-sm-8">@(Model.Equipe?.Nome ?? "N/A")</dd>
+            
+            <dt class="col-sm-4">Tipo:</dt>
+            <dd class="col-sm-8">@Model.Tipo</dd>
+            
+            <dt class="col-sm-4">Prioridade:</dt>
+            <dd class="col-sm-8">@Model.nivelPrioridade</dd>
+            
+            <dt class="col-sm-4">Data Criação:</dt>
+            <dd class="col-sm-8">@Model.data_criacao.ToShortDateString()</dd>
+            
+            <dt class="col-sm-4">Status:</dt>
+            <dd class="col-sm-8">@(Model.Status ? "Concluído" : "Pendente")</dd>
+        </dl>
+
+        <form asp-action="Apagar" asp-route-id="@Model.Id" method="post">
+            <button type="submit" class="btn btn-danger btn-lg me-2"><i class="bi bi-trash"></i> Sim, Excluir</button>
+            <a asp-action="Index" class="btn btn-secondary btn-lg"><i class="bi bi-arrow-left"></i> Cancelar e Voltar</a>
+        </form>
+    </div>
+</div>
