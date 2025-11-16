@@ -1,0 +1,68 @@
+@model UnitCheck.Models.EventoModel
+
+@{
+    ViewData["Title"] = "Criar Novo Evento/Atividade";
+}
+
+@using UnitCheck.Models.Enums
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h1 class="display-4">Criar Novo Evento/Atividade</h1>
+        <p class="lead">Registre um novo DDS, Treinamento ou Atividade de trabalho.</p>
+        <hr />
+
+        <form asp-action="Criar" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Tipo" class="control-label"></label>
+                <select asp-for="Tipo" class="form-control" asp-items="Html.GetEnumSelectList<TipoEvento>()">
+                    <option value="">-- Selecione o Tipo --</option>
+                </select>
+                <span asp-validation-for="Tipo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="EquipeId" class="control-label"></label>
+                <select asp-for="EquipeId" class="form-control" asp-items="ViewBag.EquipeId">
+                    <option value="">-- Selecione a Equipe --</option>
+                </select>
+                <span asp-validation-for="EquipeId" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label class="control-label">Data/Hora Prevista</label>
+                <input asp-for="data_finalizacao" type="datetime-local" class="form-control" />
+                <span asp-validation-for="data_finalizacao" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="nivelPrioridade" class="control-label"></label>
+                <select asp-for="nivelPrioridade" class="form-control">
+                    <option value="0">0 - Sem Data Definida</option>
+                    <option value="1">1 - Baixa</option>
+                    <option value="2">2 - Média</option>
+                    <option value="3">3 - Alta</option>
+                </select>
+                <span asp-validation-for="nivelPrioridade" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-success me-2"><i class="bi bi-save"></i> Salvar Evento</button>
+                <a asp-action="Index" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Voltar à Lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

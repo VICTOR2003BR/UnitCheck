@@ -134,7 +134,7 @@ public class EventoController : Controller
 
     [Authorize(Roles = "Admin, LiderDeEquipe")]
     // GET: Exibe a página de confirmação antes de apagar
-    public IActionResult ApagarConfirmacao(int id)
+    public IActionResult Deletar(int id)
     {
         // 1. Busca o evento (incluindo a Equipe, se o BuscarPorId retornar)
         EventoModel evento = _eventoRepository.BuscarPorId(id);

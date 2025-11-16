@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using UnitCheck.Models.Enums;
 
 
 namespace UnitCheck.Models
@@ -11,7 +12,7 @@ namespace UnitCheck.Models
     {
         public int Id { get; set; }
         public String Nome { get; set; } = string.Empty;
-        public String Tipo { get; set; } = string.Empty;
+        public TipoEvento Tipo { get; set; }
         public int nivelPrioridade { get; set; } //0=sem data definida / 1=baixa / 2=media / 3=alta
         public DateTime data_criacao { get; set; }
         public DateTime? data_finalizacao { get; set; }

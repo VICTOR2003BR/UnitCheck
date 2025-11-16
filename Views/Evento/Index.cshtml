@@ -1,0 +1,150 @@
+﻿@model List<EventoModel>
+
+@{
+    ViewData["Title"] = "Eventos";
+}
+
+<div class="container-full-width">
+
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="display-4">Eventos e Atividades</h1>
+    <a asp-controller="Evento" asp-action="Criar" class="btn btn-primary btn-lg">
+        <i class="bi bi-plus-circle-fill"></i> Criar Novo Evento
+    </a>
+</div>
+
+<hr />
+
+<div class="row">
+
+    <div class="col-md-7">
+        <h2>Pendentes</h2>
+        
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+<thead>
+    <tr>
+        <th></th> <th>Evento</th>
+        <th>Tipo</th>
+        <th>Prioridade</th>
+        <th></th>
+    </tr>
+</thead>
+
+<tbody>
+    @foreach (var evento in Model.Where(e => e.Status == false).ToList()) // Filtra apenas Pendentes
+    {
+        <tr class="table-row-group">
+            <td class="align-middle text-center" rowspan="2" style="width: 50px;">
+                <span class="priority-indicator" data-priority="@evento.nivelPrioridade"></span>
+            </td>
+            
+            <td class="font-weight-bold">@evento.Nome</td>
+            <td>@evento.Tipo</td>
+            <td>
+            @* @evento.nivelPrioridade *@
+            @{
+        string prioridadeTexto = evento.nivelPrioridade switch
+        {
+            3 => "Alta",
+            2 => "Média",
+            1 => "Baixa",
+            _ => "Sem Prioridade" // Trata o valor 0 (e qualquer outro valor inesperado)
+        };
+        @prioridadeTexto
+    }
+            </td> 
+            <td></td> @* Célula vazia para alinhar colunas *@
+        </tr>
+        
+        <tr class="table-row-group-detail">
+            <td class="text-muted small">Equipe: @(evento.Equipe?.Nome ?? "N/A")</td>
+            <td class="text-muted small">Criação: @evento.data_criacao.ToShortDateString()</td>
+            
+            <td colspan="2">
+                <div class="btn-group btn-group-sm">
+                    <a asp-action="Detalhes" asp-route-id="@evento.Id" class="btn btn-info">Ver</a>
+                    <a asp-action="Editar" asp-route-id="@evento.Id" class="btn btn-warning">Editar</a>
+                    <a asp-action="Deletar" asp-route-id="@evento.Id" class="btn btn-danger">Excluir</a>
+                </div>
+            </td>
+        </tr>
+    }
+</tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">Nenhum evento ou atividade pendente encontrado.</div>
+        }
+    </div>
+
+ <div class="col-md-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Calendário de Eventos</h5>
+        </div>
+        
+        <div class="card-body" id="calendario-container">
+            <p>Aqui será implementado o calendário visual.</p><br>
+            <p>Data atual: @DateTime.Now.ToShortDateString()</p>
+            
+            <script>
+                @{
+                    var eventosJson = Html.Raw(Json.Serialize(Model.Select(e => new { 
+                                        nome = e.Nome, 
+                                        data = e.data_finalizacao.HasValue ? e.data_finalizacao.Value.ToString("yyyy-MM-dd") : null,
+                                        tipo = e.Tipo,
+                                        id = e.Id
+                                    })));
+                }
+                var todosEventos = @eventosJson;
+                console.log(todosEventos);
+            </script>
+            
+        </div>
+    </div>
+</div>
+
+</div>
+
+    </div>
+
+    <style>
+    /* 🎨 CSS PARA A PRIORIDADE E LAYOUT DA TABELA */
+    .priority-indicator {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        border: 1px solid #6c757d; 
+    }
+    .priority-indicator[data-priority="0"] { background-color: #f8f9fa; border-color: #adb5bd; } 
+    .priority-indicator[data-priority="1"] { background-color: #28a745; border-color: #1e7e34; } 
+    .priority-indicator[data-priority="2"] { background-color: #ffc107; border-color: #d39e00; } 
+    .priority-indicator[data-priority="3"] { background-color: #dc3545; border-color: #bd2130; } 
+
+    .table-row-group-detail td {
+        padding-top: 0;
+        border-top: none; 
+        font-size: 0.85rem;
+        color: #6c757d;
+    }
+    .table-responsive {
+        overflow-x: hidden; 
+    }
+</style>
+
+@section Scripts {
+    <script>
+        // Exemplo de como você usaria o JS para destacar datas
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('calendario-container');
+            // Logica para gerar o HTML do calendário com as datas dos eventos em destaque
+        });
+    </script>
+}

@@ -163,7 +163,8 @@ header {
 .btn {
     font-weight: 600;
     border-radius: 0.25rem; /* Bordas levemente arredondadas */
-    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    /* transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out; */
+    transition: all 0.2s ease-in-out;
     padding: 0.5rem 1rem;
 }
 
@@ -173,9 +174,17 @@ header {
     color: var(--light-text);
 }
 
+/* 
 .btn-success:hover {
-    background-color: darken(var(--success-color), 10%); /* Escurece no hover */
+    background-color: darken(var(--success-color), 10%);
     border-color: darken(var(--success-color), 10%);
+}
+*/
+
+.btn-success:hover {
+    filter: brightness(0.85); 
+    /* Garante que o border-color também escureça, evitando a cor branca */
+    border-color: #1e7e34; /* Valor manual aproximado */
 }
 
 .btn-primary {
@@ -184,9 +193,15 @@ header {
     color: var(--light-text);
 }
 
-.btn-primary:hover {
+/* .btn-primary:hover {
     background-color: darken(var(--primary-color), 10%);
     border-color: darken(var(--primary-color), 10%);
+} */
+
+.btn-primary:hover {
+    /*Escurece a cor de fundo em 15% */
+    filter: brightness(0.85); 
+    border-color: #0056b3; /* Valor manual aproximado */
 }
 
 .btn-danger {
@@ -195,14 +210,21 @@ header {
     color: var(--light-text);
 }
 
-.btn-danger:hover {
+/* .btn-danger:hover {
     background-color: darken(var(--danger-color), 10%);
     border-color: darken(var(--danger-color), 10%);
+} */
+
+.btn-danger:hover {
+    /*Escurece a cor de fundo em 15% */
+    filter: brightness(0.85);
+    border-color: #b21f2d; /* Valor manual aproximado */
 }
 
 .btn-outline-secondary {
     border-color: var(--secondary-color);
     color: var(--secondary-color);
+    background-color: transparent; /* Garante que não é branco no estado normal */
 }
 
 .btn-outline-secondary:hover {
@@ -468,3 +490,9 @@ header {
 .text-danger {
     font-size: 0.85rem;
 }
+
+
+.container-full-width {
+    width: 100%;
+}
+
