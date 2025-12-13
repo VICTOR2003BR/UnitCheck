@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\UnitCheck.bundle.scp.css"
     },
     {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\IMG\\Logo(sem_fundo).png",
+      "PackagePath": "staticwebassets\\IMG\\Logo(sem_fundo).png"
+    },
+    {
       "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\IMG\\Screenshots\\Captura_de_tela_UnitCheck_pagina_de_colaboradores.png",
       "PackagePath": "staticwebassets\\IMG\\Screenshots\\Captura_de_tela_UnitCheck_pagina_de_colaboradores.png"
     },

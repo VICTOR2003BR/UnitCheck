@@ -1,0 +1,92 @@
+@model UnitCheck.Models.EventoModel
+
+@{
+    ViewData["Title"] = $"Detalhes do Evento: {Model.Nome}";
+
+    // Mapeamento de prioridade para texto e cor (para reutilização)
+    string prioridadeTexto = Model.nivelPrioridade switch
+    {
+        3 => "Alta",
+        2 => "Média",
+        1 => "Baixa",
+        _ => "Sem Prioridade"
+    };
+    string prioridadeCor = Model.nivelPrioridade switch
+    {
+        3 => "bg-danger",
+        2 => "bg-warning text-dark",
+        _ => "bg-info"
+    };
+
+    string statusTexto = Model.Status ? "Concluído" : "Pendente";
+    string statusCor = Model.Status ? "bg-success" : "bg-secondary";
+}
+
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h3 class="mb-0"><i class="bi bi-calendar-check"></i> Detalhes do Evento/Atividade</h3>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title mb-4">@Model.Nome</h4>
+                <hr />
+
+                <dl class="row">
+                    <dt class="col-sm-4">Tipo:</dt>
+                    <dd class="col-sm-8">@Model.Tipo</dd>
+
+                    <dt class="col-sm-4">Equipe Associada:</dt>
+                    <dd class="col-sm-8">
+                        @if (Model.Equipe != null)
+                        {
+                            <a asp-controller="Equipe" asp-action="DetalhesEquipe" asp-route-id="@Model.EquipeId" class="badge bg-primary">
+                                <i class="bi bi-people"></i> @Model.Equipe.Nome
+                            </a>
+                        }
+                        else
+                        {
+                            <span class="text-muted">N/A</span>
+                        }
+                    </dd>
+
+                    <dt class="col-sm-4">Status:</dt>
+                    <dd class="col-sm-8">
+                        <span class="badge @statusCor p-2">@statusTexto</span>
+                    </dd>
+
+                    <dt class="col-sm-4">Prioridade:</dt>
+                    <dd class="col-sm-8">
+                        <span class="badge @prioridadeCor p-2">@prioridadeTexto</span>
+                    </dd>
+
+                    <dt class="col-sm-4">Data de Criação:</dt>
+                    <dd class="col-sm-8">@Model.data_criacao.ToString("dd/MM/yyyy HH:mm")</dd>
+
+                    <dt class="col-sm-4">Data Prevista:</dt>
+                    <dd class="col-sm-8">
+                        @(Model.data_finalizacao.HasValue ? Model.data_finalizacao.Value.ToString("dd/MM/yyyy HH:mm") : "Não Definida")
+                    </dd>
+                </dl>
+                
+                <hr />
+
+                @* ÁREA DE AÇÕES DE PRESENÇA (PRÓXIMO PASSO) *@
+                <h5 class="mt-4"><i class="bi bi-list-check"></i> Lista de Presença</h5>
+                <p class="text-muted">Gerencie quem participou deste evento ou treinamento.</p>
+                <a asp-controller="Presenca" asp-action="Gerenciar" asp-route-eventoId="@Model.Id" class="btn btn-success me-2">
+                    <i class="bi bi-person-check"></i> Gerenciar Lista de Presença
+                </a>
+                
+            </div>
+            <div class="card-footer d-flex justify-content-end">
+                <a asp-action="Editar" asp-route-id="@Model.Id" class="btn btn-warning me-2">
+                    <i class="bi bi-pencil-square"></i> Editar
+                </a>
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Voltar à Lista
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

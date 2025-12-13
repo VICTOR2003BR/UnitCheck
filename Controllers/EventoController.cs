@@ -38,6 +38,27 @@ public class EventoController : Controller
         return View(eventos);
     }
 
+     [HttpGet]
+    public IActionResult Detalhes(int id)
+    {
+        // O repositório precisa carregar o evento e a equipe associada (Equipe)
+        EventoModel evento = _eventoRepository.BuscarPorId(id); 
+
+        if (evento == null)
+        {
+            return NotFound();
+        }
+
+        // Se o Equipe não for carregado automaticamente pelo repositório (com Include),
+        // você pode carregá-lo explicitamente aqui, embora o ideal seja no repositório.
+        if (evento.Equipe == null && evento.EquipeId > 0)
+        {
+            evento.Equipe = _equipeRepository.buscarId(evento.EquipeId);
+        }
+
+        return View(evento);
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

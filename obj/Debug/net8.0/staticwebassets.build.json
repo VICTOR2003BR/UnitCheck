@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QPCAJRhDdy05uGLMoxKGhr+ue+H2h/Xo1ZQ8dIrmSp4=",
+  "Hash": "TDLWBlMVdAkmGiUZ9NZoxiVvRAgznmWaDNu5OB1ivBU=",
   "Source": "UnitCheck",
   "BasePath": "_content/UnitCheck",
   "Mode": "Default",
@@ -129,6 +129,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\IMG\\logo.png"
+    },
+    {
+      "Identity": "C:\\Projetos\\UnitCheck\\wwwroot\\IMG\\Logo(sem_fundo).png",
+      "SourceId": "UnitCheck",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Projetos\\UnitCheck\\wwwroot\\",
+      "BasePath": "_content/UnitCheck",
+      "RelativePath": "IMG/Logo(sem_fundo).png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\IMG\\Logo(sem_fundo).png"
     },
     {
       "Identity": "C:\\Projetos\\UnitCheck\\wwwroot\\IMG\\Screenshots\\Captura_de_tela_UnitCheck_pagina_de_colaboradores_da_equipe.png",
