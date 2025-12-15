@@ -13,5 +13,7 @@ namespace UnitCheck.Repository
         EventoModel Atualizar(EventoModel evento);
         EventoModel BuscarPorId(int id);
         bool Apagar(int id);
+        int ContarEventosPendentes();
+        List<EventoModel> BuscarPendentes();
     }
 }

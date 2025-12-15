@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Usuário | UnitCheck: Gestão de Equipes e Eventos</title>
+    <!-- Carregamento do Tailwind CSS para um design moderno e responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Configuração de Fonte padrão e estilos de barra de rolagem */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+            /* Fundo claro e suave */
+        }
+
+        /* Estilização para uma barra de rolagem mais fina */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #a0aec0;
+            /* Cor cinza-médio */
+            border-radius: 4px;
+        }
+
+        /* Estilo para links ativos na navegação */
+        .nav-link.active {
+            background-color: #3b82f6;
+            /* Cor primária do Tailwind (azul) */
+            color: white;
+            font-weight: 600;
+            border-radius: 0.375rem;
+        }
+
+        .nav-link.active:hover {
+            background-color: #2563eb;
+        }
+
+        /* A margem superior de rolagem garante que o título da seção não fique atrás do cabeçalho */
+        .content-section {
+            scroll-margin-top: 1rem;
+        }
+
+        /* Classe para definir a transição do main, garantindo que o ml-64 seja animado */
+        #main-content {
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        .ImgDiv {
+            border: solid black 1px;
+            border-radius: 30px;
+            margin: 2%;
+        }
+
+        .ImgDiv IMG {
+            border-radius: 30px;
+        }
+
+        .ImgDivDica {
+            border: solid black 1px;
+            border-radius: 30px;
+            margin: 2%;
+        }
+
+        .ImgDivDica IMG {
+            border-radius: 30px;
+        }
+    </style>
+</head>
+
+<body class="flex min-h-screen relative">
+
+    <!-- Botão de Menu (FIXO no canto superior direito para visibilidade garantida) -->
+    <button id="menu-button"
+        class="fixed top-4 right-4 p-2 rounded-lg text-gray-700 bg-white shadow-xl border hover:bg-gray-100 z-30 transition-all duration-300"
+        onclick="toggleSidebar()">
+        <!-- Ícone de Fechar (Visível por padrão, pois a sidebar inicia aberta) -->
+        <svg id="menu-icon-close" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+        <!-- Ícone de Abrir (Oculto por padrão) -->
+        <svg id="menu-icon-open" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+    </button>
+
+    <!-- Sidebar de Navegação (Fixo à esquerda, controlada por JS em todas as telas) -->
+    <!-- translate-x-0 garante que ela comece visível -->
+    <aside id="sidebar"
+        class="fixed inset-y-0 left-0 w-64 bg-white shadow-xl p-4 flex flex-col z-20 transition-transform duration-300 transform translate-x-0">
+        <h2 class="text-xl font-bold text-gray-800 border-b pb-3 mb-4 flex items-center">
+            <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17 20h5v-5a2 2 0 00-2-2h-2a2 2 0 00-2 2v5zM9 20h5v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5zM12 12a4 4 0 100-8 4 4 0 000 8z">
+                </path>
+            </svg>
+            UnitCheck Manual
+        </h2>
+
+        <!-- Barra de Pesquisa (Funcionalidade básica de filtro implementada em JS) -->
+        <div class="mb-4">
+            <input type="text" id="searchBar" onkeyup="filterNavigation()" placeholder="Pesquisar tópicos..."
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-sm">
+        </div>
+
+        <!-- Links de Navegação (Menu) -->
+        <nav class="space-y-2 overflow-y-auto flex-grow">
+            <a href="#introducao" class="nav-link block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg active"
+                onclick="closeSidebarOnMobile()">
+                1. Introdução ao UnitCheck
+            </a>
+            <a href="#primeiros-passos" class="nav-link block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                onclick="closeSidebarOnMobile()">
+                2. Primeiros Passos e Login
+            </a>
+            <a href="#gestao-equipes" class="nav-link block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                onclick="closeSidebarOnMobile()">
+                3. Gerenciamento de Equipes
+            </a>
+            <a href="#gestao-colaboradores" class="nav-link block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                onclick="closeSidebarOnMobile()">
+                4. Cadastro e Gestão de Colaboradores
+            </a>
+            <a href="#eventos-atividades" class="nav-link block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                onclick="closeSidebarOnMobile()">
+                5. Criação de Eventos e Atividades
+            </a>
+            <a href="#lista-presenca" class="nav-link block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                onclick="closeSidebarOnMobile()">
+                6. Módulo de Lista de Presença
+            </a>
+            <a href="#suporte-faq" class="nav-link block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                onclick="closeSidebarOnMobile()">
+                7. Suporte e FAQ
+            </a>
+        </nav>
+
+        <footer class="mt-auto pt-4 border-t text-xs text-gray-500 text-center">
+            &copy; 2025 UnitCheck. Todos os direitos reservados.
+        </footer>
+    </aside>
+
+    <!-- Conteúdo Principal (A margem lateral é controlada pelo JS) -->
+    <main id="main-content" class="flex-grow ml-64 p-4 sm:p-8">
+
+        <!-- Cabeçalho Principal -->
+        <div class="mb-8 border-b pb-4">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900">
+                Manual de Usuário UnitCheck
+            </h1>
+            <p class="text-md sm:text-lg text-gray-600 mt-1">
+                Guia detalhado para a otimização da sua gestão de talentos e projetos.
+            </p>
+        </div>
+
+        <!-- 1. INTRODUÇÃO -->
+        <section id="introducao" class="content-section py-8">
+            <h2 class="text-3xl font-semibold text-blue-700 mb-4 border-b pb-2">1. Introdução ao UnitCheck</h2>
+            <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6 rounded-md">
+                <p class="font-medium text-blue-800">
+                    O UnitCheck simplifica a organização e o controle das suas equipes. Cadastre colaboradores, crie
+                    equipes,
+                    e gerencie facilmente quem faz parte de cada grupo. Tenha uma visão clara da sua força de trabalho e
+                    otimize
+                    a gestão dos seus projetos.
+                </p>
+            </div>
+
+            <p class="text-gray-700 mb-4">
+                Esta aplicação foi desenhada para otimizar a gestão de recursos humanos e o acompanhamento de projetos,
+                proporcionando uma visão clara e detalhada de toda a sua força de trabalho e dos compromissos
+                associados. Ao cadastrar colaboradores e estruturá-los em equipes distintas, você obtém um panorama
+                organizacional que facilita a alocação de tarefas e a mensuração de desempenho.
+            </p>
+
+            <h4 class="text-xl font-semibold mt-6 mb-3 text-gray-800">Funcionalidades Chave do Sistema:</h4>
+            <ul class="list-disc list-inside space-y-2 pl-4 text-gray-700">
+                <li><strong class="text-black-600">Gestão Hierárquica:</strong> Cadastro completo de colaboradores e sua
+                    distribuição em equipes específicas.</li>
+                <li><strong class="text-black-600">Controle de Atividades:</strong> Criação e acompanhamento de Eventos
+                    e Atividades com status, tipo e nível de prioridade (Baixa, Média, Alta).</li>
+                <li><strong class="text-black-600">Visualização Detalhada:</strong> Visão consolidada por equipe,
+                    mostrando membros, informações básicas e o histórico de eventos/atividades concluídos ou pendentes.
+                </li>
+                <li><strong class="text-black-600">Novo Módulo de Presença:</strong> Ferramenta para registrar a
+                    participação em treinamentos, reuniões ou eventos corporativos.</li>
+            </ul>
+
+            <div class="mt-8 p-4 bg-gray-100 rounded-lg border border-gray-300">
+                <h5 class="font-bold text-gray-800 mb-2 flex items-center">
+                    <i class="bi bi-lightbulb mr-2 text-yellow-600"></i> Dica de Uso
+                </h5>
+                <p class="text-sm text-gray-600">
+                    Sugerimos que a criação das equipes seja o primeiro passo após o login inicial, pois os
+                    colaboradores e eventos serão subsequentemente vinculados a essas estruturas.
+                </p>
+            </div>
+        </section>
+
+        <!-- 2. PRIMEIROS PASSOS (Placeholder) -->
+        <section id="primeiros-passos" class="content-section py-8">
+            <h2 class="text-3xl font-semibold text-blue-700 mb-4 border-b pb-2">2. Primeiros Passos e Login</h2>
+            <!-- <p class="text-gray-700">
+                Esta seção explicará o processo de acesso ao sistema, desde a tela de login até o dashboard inicial.
+            </p> -->
+            <p class="text-muted mt-2">
+                Ao iniciar o sistema, o usuário será direcionado automaticamente para a tela de login.
+                Essa interface permite o acesso de usuários previamente cadastrados e garante a segurança
+                das informações e funcionalidades disponibilizadas pelo sistema.
+            </p>
+
+            <div class="ImgDiv">
+                <img src="IMG/Screenshots/tela_de_login.png" alt="tela_de_login">
+            </div>
+
+            Caso ainda não possua uma conta, o sistema disponibiliza a opção de criar um novo usuário.
+            Para isso, clique em <strong>“Registrar um novo usuário”</strong>, localizado no canto inferior da tela,
+            ou no botão <strong>“Registrar”</strong> no canto superior direito. Em seguida, você será redirecionado
+            para a página de registro.
+            Caso queira registrar um novo usuario clique em "Registrar um novo usuário" no canto inferior da tela ou em
+            "Registrar" no lado superior direito. após isso você será redirecionado a pagina de registro de usuario.
+
+            <div class="ImgDiv">
+                <img src="IMG/Screenshots/Indicacoes/indicacao_registrar_usuario.png" alt="indicacao_registrar_usuario">
+            </div>
+
+            <p class="text-muted mt-4">
+                Na tela de registro, preencha os campos obrigatórios para criação da conta:
+            </p>
+
+            <ul class="text-muted list-disc ml-6">
+                <li>Informe um endereço de e-mail válido no campo <strong>E-mail</strong>.</li>
+
+                Crie uma senha que atenda aos requisitos de segurança do sistema.
+                A senha deve:
+                <ul class="list-disc ml-6 mt-1">
+                    <li>Conter entre <strong>6 e 100 caracteres</strong>;</li>
+                    <li>Possuir ao menos <strong>um caractere alfanumérico</strong>;</li>
+                    <li>Conter ao menos <strong>um dígito de 0 a 9</strong>;</li>
+                    <li>Incluir pelo menos <strong>uma letra maiúscula</strong>.</li>
+                </ul>
+                </li>
+
+                <li>
+                    No campo <strong>Confirmar Senha</strong>, insira novamente a mesma senha
+                    para garantir que não houveram erros de digitação.
+                </li>
+
+                <li>
+                    Após preencher todos os campos corretamente, clique em <strong>Registrar</strong>
+                    para concluir o cadastro.
+                </li>
+            </ul>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/tela_de_registrar.png" alt="Tela de Registro">
+            </div>
+
+            <div class="mt-8 p-4 bg-gray-100 rounded-lg border border-gray-300">
+                <h5 class="font-bold text-gray-800 mb-2 flex items-center">
+                    <i class="bi bi-lightbulb mr-2 text-yellow-600"></i> Dica de Uso
+                </h5>
+                <p class="text-sm text-gray-600">
+                    Guarde seu e-mail e senha de forma segura para evitar dificuldades de acesso no futuro.
+                </p>
+            </div>
+
+            <p class="text-muted mt-2">
+                Para encerrar a sessão do usuário, clique na opção <strong>“Logout”</strong>, localizada no canto
+                superior direito da tela.
+            </p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/Indicacoes/Logout.png" alt="Logout">
+            </div>
+
+
+
+            </p>
+        </section>
+
+        <!-- 3. GERENCIAMENTO DE EQUIPES (Placeholder) -->
+        <section id="gestao-equipes" class="content-section py-8">
+            <h2 class="text-3xl font-semibold text-blue-700 mb-4 border-b pb-2">3. Gerenciamento de Equipes</h2>
+            <!-- <p class="text-gray-700">
+                Essa parte do sistema é responsavel pela criação, edição e gerenciamento das equipes no UnitCheck.
+            </p> -->
+            <p class="text-muted mt-2">Esta área do sistema é responsável pela criação, edição e gerenciamento das
+                equipes cadastradas no UnitCheck.
+            </p><br>
+            <p class="text-muted mt-2">Nessa interface, é possível visualizar todas as equipes registradas no sistema.
+            </p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/tela_de_equipes.png" alt="tela_de_equipes">
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-3 text-gray-800">Criação de Equipes:</h4>
+
+            <p class="text-muted mt-2">Para adicionar uma nova equipe basta clicar no botão <strong>"Criar
+                    equipe"</strong>.</p>
+
+            <p class="text-muted mt-2">Na tela de criação, preencha todas as informações necessárias: nome da equipe,
+                local de atuação, descrição e, opcionalmente, selecione um líder. Qualquer colaborador previamente
+                cadastrado pode ser definido como líder.</p>
+
+            <p class="text-muted mt-2">Após preencher os dados, finalize o processo clicando em <strong>“Criar
+                    Equipe”</strong>.</p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/Indicacoes/criacao_de_equipes01.png" alt="criacao_de_equipes01">
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-3 text-gray-800">Gerenciamento de colaboradores e edição de
+                equipes:</h4>
+
+            <p class="text-muted mt-2">Após a criação, a equipe será exibida na página principal de equipes e ficará
+                registrada no banco de dados do sistema.
+            </p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/Indicacoes/criacao_de_equipe02.png" alt="criacao_de_equipe02">
+            </div>
+
+            <p class="text-muted mt-2">Para gerenciar os colaboradores associados à equipe, clique na opção <strong>“Ver
+                    colaboradores”</strong>,
+                que o levará à tela de detalhes da equipe.
+            </p>
+
+            <p class="text-muted mt-2">Nesta tela, selecione a opção <strong>“Gerenciar colaboradores”</strong>.
+            </p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/Indicacoes/detalhes_da_equipe.png" alt="detalhes_da_equipe">
+            </div>
+
+            <p class="text-muted mt-2">Será exibida uma lista com todos os colaboradores cadastrados no sistema.
+                Marque aqueles que deseja adicionar à equipe e clique em <strong>“Salvar Colaboradores”</strong>.
+                Após a confirmação, os colaboradores selecionados passarão a fazer parte da equipe.
+            </p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/Indicacoes/gerenciar_colaboradores.png" alt="gerenciar_colaboradores">
+            </div>
+
+            <p class="text-muted mt-2">Para adicionar ou altera um lider de equipe clique em <strong>"Editar"</strong>
+                na tela
+                principal de equipes.</p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/Indicacoes/edicao_de_equipe.png" alt="edicao_de_equipe">
+            </div>
+
+            <p class="text-muted mt-2">Em seguida, localize a opção <strong>“Líder”</strong>, situada na parte inferior
+                da tela, e selecione um dos colaboradores cadastrados para assumir a função de líder da equipe.
+            </p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/Indicacoes/selecao_de_lider.png" alt="selecao_de_lider">
+            </div>
+
+            <p class="text-muted mt-2">Após realizar a seleção desejada, clique em <strong>“Salvar alterações”</strong>.
+                A equipe passará a ter como líder o colaborador escolhido.
+            </p>
+
+        </section>
+
+        <!-- 4. GESTÃO DE COLABORADORES (Placeholder) -->
+        <section id="gestao-colaboradores" class="content-section py-8">
+            <h2 class="text-3xl font-semibold text-blue-700 mb-4 border-b pb-2">4. Cadastro e Gestão de Colaboradores
+            </h2>
+            <!-- <p class="text-gray-700">
+                Instruções passo a passo para o cadastro de novos colaboradores e como associá-los a uma equipe
+                existente.
+            </p> -->
+            <p class="text-muted mt-2">Esta área do sistema é responsável pela visualização, cadastro, edição e exclusão
+                de colaboradores.</p>
+            <p class="text-muted mt-2">Na tela abaixo, é possível visualizar todos os colaboradores cadastrados no
+                UnitCheck.
+            </p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/tela_de_colaboradores.png" alt="tela_de_colaboradores">
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-3 text-gray-800">Criação, edição e excluzão de colaboradores:</h4>
+
+            <p class="text-muted mt-2">Para adicionar um novo colaborador ao sistema, clique no botão <strong>“Adicionar
+                    Colaborador”</strong>, localizado no canto superior direito da tela.
+            </p>
+
+            </p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/Indicacoes/adicionar_colaborador01.png" alt="adicionar_colaborador01">
+            </div>
+
+            <p class="text-muted mt-2">Preencha todos os campos solicitados com as informações do colaborador (Nome,
+                Função E-mail, CPF, Telefone, Matrícula e Data de Admissão). Após inserir todos os dados corretamente,
+                clique no botão <strong>“Concluído”</strong>, localizado na parte inferior da tela.
+            </p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/Indicacoes/adicionar_colaborador02.png" alt="adicionar_colaborador02">
+            </div>
+
+            <p class="text-muted mt-2">Após concluir essas etapas, o novo colaborador será registrado com sucesso no
+                sistema UnitCheck.
+            </p>
+
+            <div class="ImgDiv mt-4">
+                <img src="IMG/Screenshots/Indicacoes/adicionar_colaborador03.png" alt="adicionar_colaborador03">
+            </div>
+
+            <p class="text-muted mt-2">Para editar as informações de um colaborador ou removê-lo do banco de dados,
+                utilize os botões <strong>“Editar”</strong> e <strong>“Deletar”</strong>, localizados à direita de cada
+                registro na tabela.
+            </p>
+
+            <div class="ImgDiv">
+                <img src="IMG/Screenshots/Indicacoes/editar_deletar.png" alt="editar_deletar">
+            </div>
+
+            <div class="mt-8 p-4 bg-gray-100 rounded-lg border border-gray-300">
+                <h5 class="font-bold text-gray-800 mb-2 flex items-center">
+                    <i class="bi bi-lightbulb mr-2 text-yellow-600"></i> Dica de Uso
+                </h5>
+                <p class="text-sm text-gray-600">
+                    Caso o sistema possua muitos colaboradores cadastrados, utilize a barra de busca para localizar
+                    rapidamente um colaborador específico.
+
+                </p>
+                <div class="ImgDivDica">
+                    <img src="IMG/Screenshots/Indicacoes/buscar_colaboradores.png" alt="buscar_colaboradores">
+                </div>
+            </div>
+
+        </section>
+
+        <!-- 5. EVENTOS E ATIVIDADES (Placeholder) -->
+        <section id="eventos-atividades" class="content-section py-8">
+            <h2 class="text-3xl font-semibold text-blue-700 mb-4 border-b pb-2">5. Criação de Eventos e Atividades</h2>
+            <!-- <p class="text-gray-700">
+                Guia sobre como registrar um novo evento/atividade, configurar o Tipo, o Nível de Prioridade (Baixa,
+                Média, Alta) e a data de finalização prevista.
+            </p> -->
+            <p class="text-muted mt-2">Esta área do UnitCheck é um dos principais recursos do sistema. Ela é responsável
+                pela criação de eventos e atividades, bem como pela atribuição dessas ações a uma equipe cadastrada.
+                Nessa interface, é possível criar eventos, vinculá-los a uma equipe específica, definir a data prevista
+                de conclusão, o nível de prioridade e o tipo de evento.
+            </p>
+
+            <p class="text-muted mt-2">
+                Os tipos de evento disponíveis são:
+            </p>
+            <ul class="text-muted list-disc ml-6">
+                <li><strong>Atividades</strong> – Tarefas operacionais, como ações de limpeza.</li>
+                <li><strong>Treinamentos</strong> – Atividades como DDS ou treinamentos específicos.</li>
+                <li><strong>Outros</strong> – Para situações em que o tipo de evento não se encaixa nas categorias
+                    anteriores.</li>
+            </ul>
+
+            <p class="text-muted mt-2">
+                Os níveis de prioridade disponíveis são:
+            </p>
+            <ul class="text-muted list-disc ml-6">
+                <li><strong>0 – Sem data definida</strong></li>
+                <li><strong>1 – Baixo</strong></li>
+                <li><strong>2 – Médio</strong></li>
+                <li><strong>3 – Alto</strong></li>
+            </ul>
+
+
+            <div class="ImgDiv">
+                <img src="IMG/Screenshots/Eventos_e_atividades.png" alt="Eventos_e_atividades">
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-3 text-gray-800">Criação de eventos:</h4>
+
+            <p class="text-muted mt-2">Para criar um novo evento clique em <strong>"Criar Evento"</strong> no canto
+                superior direito da tela.</p>
+
+            <div class="ImgDiv">
+                <img src="IMG/Screenshots/Indicacoes/criar_evento.png" alt="criar_evento">
+            </div>
+
+            <p class="text-muted mt-2"> Em seguida, preencha os campos solicitados: Nome do evento, Tipo (Atividade,
+                Treinamento ou Outros), Equipe associada, Data e Hora previstas de conclusão e Nível de prioridade. Após
+                concluir o preenchimento, clique em <strong>“Salvar Evento”</strong>.
+            </p>
+
+            <div class="ImgDiv">
+                <img src="IMG/Screenshots/Indicacoes/criar_evento02.png" alt="criar_evento02">
+            </div>
+
+            <p class="text-muted mt-2">
+                Após o salvamento, o evento será exibido na tela de Eventos e Atividades com o status
+                <strong>pendente</strong>.
+                A lista é organizada automaticamente por nível de prioridade.
+            </p>
+
+            <div class="ImgDiv">
+                <img src="IMG/Screenshots/Indicacoes/criar_evento03.png" alt="criar_evento03">
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-3 text-gray-800">Ver detalhes do evento:</h4>
+
+            <p class="text-muted mt-2">
+                Para visualizar informações completas sobre um evento, clique no botão <strong>“Ver”</strong>
+                correspondente ao registro desejado.
+            </p>
+
+
+            <div class="ImgDiv">
+                <img src="IMG/Screenshots/Indicacoes/visualizar_evento.png" alt="visualizar_evento">
+            </div>
+
+            <p class="text-muted mt-2">Você será redirecionado para tela com todas as informações do evento.</p>
+
+            <div class="ImgDiv">
+                <img src="IMG/Screenshots/detalhes_evento.png" alt="detalhes_evento">
+            </div>
+
+            <p class="text-muted mt-2">
+                Na tela de detalhes, ao clicar em <strong>“Gerenciar Lista de Presença”</strong>, você será direcionado
+                para a funcionalidade de geração de listas de presença para as equipes vinculadas ao evento.
+            </p>
+
+            <div class="ImgDiv">
+                <img src="IMG/Screenshots/Indicacoes/gerar_lista_evento.png" alt="gerar_lista_evento">
+            </div>
+
+            <div class="mt-8 p-4 bg-red-50 rounded-lg border border-red-600">
+                <h5 class="font-bold text-red-500 mb-2 flex items-center">
+                    <i class="bi bi-lightbulb mr-2 text-yellow-600"></i> ATENÇÃO
+                </h5>
+                <p class="text-sm text-black-600">
+                    Esta funcionalidade ainda está em desenvolvimento e, portanto, não está disponível no momento.
+                </p>
+            </div>
+
+
+            <h4 class="text-xl font-semibold mt-6 mb-3 text-gray-800">Edição de Eventos e Marcação como Concluído:</h4>
+
+            <p class="text-muted mt-2">Para editar um evento, clique no botão <strong>“Editar”</strong> correspondente
+                ao evento desejado.</p>
+
+            <div class="ImgDiv">
+                <img src="IMG/Screenshots/Indicacoes/editar_evento01.png" alt="editar_evento01">
+            </div>
+
+            <p class="text-muted mt-2">Na tela de edição, é possível alterar o nome do evento, o tipo, a equipe
+                associada, a data e hora previstas de conclusão, o nível de prioridade e também atualizar o status de
+                <strong>pendente</strong> para <strong>concluído</strong>.
+            </p>
+
+            <div class="ImgDiv">
+                <img src="IMG/Screenshots/Indicacoes/editar_evento02.png" alt="editar_evento02">
+            </div>
+
+            <div class="mt-8 p-4 bg-red-50 rounded-lg border border-red-600">
+                <h5 class="font-bold text-red-500 mb-2 flex items-center">
+                    <i class="bi bi-lightbulb mr-2 text-yellow-600"></i> ATENÇÃO
+                </h5>
+                <p class="text-sm text-black-600">
+                    Ao marcar um evento como concluído, ele será removido automaticamente da listagem principal, que
+                    exibe apenas eventos pendentes. Uma atualização futura permitirá visualizar também os eventos
+                    concluídos.
+                </p>
+            </div>
+
+        </section>
+
+        <!-- 6. LISTA DE PRESENÇA -->
+        <section id="lista-presenca" class="content-section py-8">
+            <h2 class="text-3xl font-semibold text-blue-700 mb-4 border-b pb-2">6. Módulo de Lista de Presença</h2>
+
+            <p class="text-gray-700">
+                O módulo de Lista de Presença é uma funcionalidade que está em desenvolvimento e será um dos recursos
+                mais importantes
+                do UnitCheck quando finalizado. Ele permitirá registrar a participação dos colaboradores em eventos e
+                atividades,
+                garantindo maior organização e controle das informações.
+            </p>
+
+            <h4 class="text-xl font-semibold mt-6 mb-3 text-gray-800">Como o módulo irá funcionar:</h4>
+
+            <p class="text-muted mt-2">
+                Quando implementado, o módulo permitirá selecionar uma ou mais equipes cadastradas para gerar listas de
+                presença
+                diretamente associadas a um evento. Serão disponibilizadas duas modalidades de geração de listas:
+            </p>
+
+            <ul class="text-muted list-disc ml-6 mt-2">
+                <li>
+                    <strong>Lista de Presença Digital:</strong> As equipes selecionadas serão carregadas no próprio
+                    sistema, permitindo
+                    preencher a lista de presença de forma digital. Após o preenchimento, será possível salvar ou
+                    exportar a lista
+                    em PDF ou outros formatos suportados.
+                </li>
+                <li>
+                    <strong>Lista de Presença para Preenchimento Manual:</strong> O usuário poderá escolher as equipes
+                    desejadas e gerar
+                    uma lista em branco, contendo apenas os nomes dos colaboradores. Essa versão será destinada à
+                    impressão e posterior
+                    preenchimento manual.
+                </li>
+            </ul>
+
+            <div class="mt-8 p-4 bg-red-50 rounded-lg border border-red-600">
+                <h5 class="font-bold text-red-500 mb-2 flex items-center">
+                    <i class="bi bi-lightbulb mr-2 text-yellow-600"></i> ATENÇÃO
+                </h5>
+                <p class="text-sm text-black-600">
+                    O módulo de Lista de Presença ainda está em desenvolvimento. Assim que for concluído, todas as
+                    funcionalidades
+                    descritas acima estarão disponíveis para uso.
+                </p>
+            </div>
+        </section>
+
+
+        <!-- 7. SUPORTE E FAQ -->
+        <section id="suporte-faq" class="content-section py-8">
+            <h2 class="text-3xl font-semibold text-blue-700 mb-4 border-b pb-2">7. Suporte e FAQ</h2>
+
+            <p class="text-gray-700">
+                Nesta seção você encontrará as informações necessárias para obter suporte técnico, bem como respostas
+                para as dúvidas mais comuns relacionadas ao uso do UnitCheck.
+            </p>
+
+            <h4 class="text-xl font-semibold mt-6 mb-3 text-gray-800">Suporte Técnico</h4>
+
+            <p class="text-muted mt-2">
+                Caso encontre problemas durante o uso do sistema, erros inesperados ou comportamentos que dificultem a
+                operação, entre em contato com o suporte técnico responsável pelo UnitCheck.
+                O suporte poderá auxiliar na solução de falhas, esclarecimento de recursos e orientações gerais sobre a
+                plataforma.
+            </p>
+
+            <ul class="text-muted list-disc ml-6 mt-2">
+                <li><strong>E-mail de Suporte:</strong> suporte.unitcheck@empresa.com</li>
+                <li><strong>Horário de Atendimento:</strong> Segunda a Sexta, das 08h00 às 17h00</li>
+                <li><strong>Tempo Médio de Resposta:</strong> 1 a 100 anos úteis</li>
+            </ul>
+
+            <p class="text-muted mt-2">
+                Em caso de solicitações mais complexas, também poderão ser fornecidos registros de log, prints de tela
+                ou informações adicionais, conforme orientação da equipe de suporte.
+            </p>
+
+            <h4 class="text-xl font-semibold mt-6 mb-3 text-gray-800">FAQ – Perguntas Frequentes</h4>
+
+            <div class="mt-4">
+                <h5 class="font-semibold text-gray-800">1. Não consigo acessar minha conta. O que devo fazer?</h5>
+                <p class="text-muted mt-1">
+                    Verifique se está utilizando o e-mail e a senha corretos. Caso o problema persista, tente redefinir
+                    a senha através da tela de login.
+                    Se ainda assim não conseguir acessar, entre em contato com o suporte técnico.
+                </p>
+            </div>
+
+            <div class="mt-4">
+                <h5 class="font-semibold text-gray-800">2. Como altero meus dados de usuário?</h5>
+                <p class="text-muted mt-1">
+                    As informações do usuário não podem ser modificadas no momento.
+                    Caso algum dado esteja bloqueado para edição, entre em contato com o suporte ou com o administrador
+                    do sistema.
+                </p>
+            </div>
+
+            <div class="mt-4">
+                <h5 class="font-semibold text-gray-800">3. Não estou encontrando uma equipe ou colaborador cadastrado. O
+                    que pode ter acontecido?</h5>
+                <p class="text-muted mt-1">
+                    Verifique se o cadastro foi realmente concluído e salvo. Caso o registro tenha sido excluído ou não
+                    exista permissão para visualizá-lo,
+                    ele poderá não aparecer na listagem. Se necessário, consulte o administrador do sistema.
+                </p>
+            </div>
+
+            <div class="mt-4">
+                <h5 class="font-semibold text-gray-800">4. O módulo de Lista de Presença não aparece para mim. Por quê?
+                </h5>
+                <p class="text-muted mt-1">
+                    O módulo encontra-se em desenvolvimento e será disponibilizado em uma atualização futura.
+                    Até a conclusão, algumas funcionalidades podem estar ocultas ou indisponíveis.
+                </p>
+            </div>
+
+            <div class="mt-4">
+                <h5 class="font-semibold text-gray-800">5. O que fazer caso o sistema apresente erro ou comportamento
+                    inesperado?</h5>
+                <p class="text-muted mt-1">
+                    Registre o momento em que o erro ocorreu, capture a tela (print) se possível e envie as informações
+                    ao suporte técnico,
+                    para que a equipe possa analisar e aplicar a correção adequada.
+                </p>
+            </div>
+
+            <div class="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-600">
+                <h5 class="font-bold text-blue-700 mb-2 flex items-center">
+                    <i class="bi bi-info-circle mr-2"></i> IMPORTANTE
+                </h5>
+                <p class="text-sm text-black-600">
+                    A FAQ será atualizada continuamente conforme novas funcionalidades forem adicionadas ao sistema e
+                    conforme surgirem dúvidas recorrentes dos usuários.
+                </p>
+            </div>
+
+        </section>
+
+
+
+    </main>
+
+    <script>
+        // Função para alternar (abrir/fechar) a barra lateral em todas as telas
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+            const iconOpen = document.getElementById('menu-icon-open');
+            const iconClose = document.getElementById('menu-icon-close');
+
+            // Verifica se está oculto (classe de translate)
+            const isHidden = sidebar.classList.contains('-translate-x-full');
+
+            if (isHidden) {
+                // ABRIR
+                sidebar.classList.remove('-translate-x-full');
+                mainContent.classList.add('ml-64'); // Adiciona margem lateral
+                iconClose.classList.remove('hidden');
+                iconOpen.classList.add('hidden');
+            } else {
+                // FECHAR
+                sidebar.classList.add('-translate-x-full');
+                mainContent.classList.remove('ml-64'); // Remove margem lateral
+                iconClose.classList.add('hidden');
+                iconOpen.classList.remove('hidden');
+            }
+        }
+
+        // Função para fechar a sidebar após clicar em um link
+        function closeSidebarOnMobile() {
+            // Se a tela for pequena E o menu estiver aberto, feche-o
+            if (window.innerWidth < 640 && !document.getElementById('sidebar').classList.contains('-translate-x-full')) {
+                toggleSidebar();
+            }
+        }
+
+        // JavaScript para a funcionalidade de Pesquisa (Filtro de Navegação)
+        function filterNavigation() {
+            const input = document.getElementById('searchBar');
+            const filter = input.value.toUpperCase();
+            const nav = document.querySelector('nav');
+            const links = nav.getElementsByClassName('nav-link');
+
+            for (let i = 0; i < links.length; i++) {
+                const textValue = links[i].textContent || links[i].innerText;
+                if (textValue.toUpperCase().indexOf(filter) > -1) {
+                    links[i].style.display = "";
+                } else {
+                    links[i].style.display = "none";
+                }
+            }
+        }
+
+        // JavaScript para destacar o link de navegação ativo baseado na rolagem (ScrollSpy)
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            let current = null;
+
+            // Itera pelas seções de baixo para cima (melhor para ScrollSpy)
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const section = sections[i];
+                // Offset ajustado para a área de visualização abaixo do topo
+                const offset = 50;
+
+                if (window.scrollY >= section.offsetTop - offset) {
+                    current = section.getAttribute('id');
+                    break; // Achou a seção, pode parar
+                }
+            }
+
+            // Se o scrollY for muito pequeno (topo), garantimos 'introducao' como ativo.
+            if (!current && window.scrollY < 50) {
+                current = 'introducao';
+            }
+
+            // Remove a classe 'active' de todos e adiciona ao link correspondente
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+
+                // Garante que 'current' não é null E que o href do link corresponde EXATAMENTE à seção atual.
+                if (current && link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Configuração inicial. A sidebar inicia aberta (translate-x-0) e o main com margem (ml-64).
+        window.onload = function () {
+            document.querySelector('.nav-link[href="#introducao"]').classList.add('active');
+        };
+    </script>
+
+</body>
+
+</html>

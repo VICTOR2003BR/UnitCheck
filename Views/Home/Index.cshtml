@@ -1,53 +1,181 @@
-﻿@{
-    ViewData["Title"] = "Inicio";
+﻿@*
+    Home Page - Dashboard principal do UnitCheck.
+    Estilo atualizado para garantir que todo o texto dentro dos cards de métricas seja branco
+    para máximo contraste no fundo Dark Slate (#2c3e50).
+*@
+@{
+    ViewData["Title"] = "Dashboard - Início";
 }
 
-<div class="text-center mb-5">
-    <h1 class="display-4">Seja Bem Vindo(a) ao UnitCheck!</h1>
-    <p class="lead">Sua plataforma completa para gerenciar equipes e colaboradores.</p>
+<!-- Definindo estilos personalizados para os cards de métricas -->
+<style>
+    /* Cor de fundo primária para o dashboard */
+    .unitcheck-primary-bg {
+        background-color: #3498db !important; /* Azul Padrão */
+    }
+    /* Cor de destaque para títulos e elementos de texto */
+    .unitcheck-dark-bg {
+        background-color: #2c3e50 !important; /* Dark Slate - Para os Cards */
+    }
+    /* Cor de destaque para o texto no cabeçalho */
+    .unitcheck-primary-text {
+        color: #3498db !important;
+    }
+    
+    /* Estilo para os cards de métricas - Fundo escuro e texto BRANCO */
+    .metric-card {
+        background-color: #2c3e50; /* Fundo Dark Slate */
+        color: white; /* Cor Padrão do Texto: BRANCO */
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .metric-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2) !important;
+    }
+    /* Garanindo que os números (card-text) também sejam brancos */
+    .metric-card .card-text {
+        color: white; /* Alterado para BRANCO */
+    }
+    /* Garanindo que os ícones também sejam brancos */
+    .metric-card i {
+        color: white; /* Ícones BRANCOS */
+    }
+</style>
+
+
+<!-- Cabeçalho de Boas-Vindas com Estilo Moderno -->
+<div class="p-5 mb-4 rounded-3 text-white shadow-lg unitcheck-primary-bg">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold"><i class="bi bi-speedometer2 me-3"></i> Bem-Vindo ao UnitCheck!</h1>
+        <p class="col-md-8 fs-4 opacity-75">
+            Visualize o desempenho da sua força de trabalho e gerencie suas equipes e eventos de forma centralizada.
+        </p>
+    </div>
 </div>
 
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-5 mb-4">
-            <div class="card text-center shadow-sm h-100">
-                <div class="card-body">
-                    <h5 class="card-title text-primary">Equipes Ativas</h5>
-                    <p class="card-text display-3">@ViewBag.TotalEquipes</p>
-                    <a asp-controller="Equipe" asp-action="Index" class="btn btn-primary mt-3">Ver Equipes</a>
+    
+    <!-- Título da seção (mantido em Primary Blue) -->
+    <h2 class="mb-4 unitcheck-primary-text fw-light">Principais Funcionalidades</h2>
+
+    <!-- Seção 1: Cards de Métricas (Dashboard) -->
+    <div class="row g-4 mb-5">
+        
+        <!-- Card 1: Equipes Ativas -->
+        <div class="col-lg-3 col-md-6">
+            <div class="card metric-card shadow-lg h-100 border-0 rounded-3">
+                <div class="card-body d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Equipes Ativas</h5>
+                        <i class="bi bi-diagram-3-fill fs-2"></i>
+                    </div>
+                    <!-- Cor do número em branco (definido no CSS da classe metric-card .card-text) -->
+                    <p class="card-text display-4 fw-bold mt-2 flex-grow-1">@ViewBag.TotalEquipes</p>
+                    <a asp-controller="Equipe" asp-action="Index" class="btn btn-outline-light btn-sm mt-3">Ver Detalhes</a>
                 </div>
             </div>
         </div>
-        <div class="col-md-5 mb-4">
-            <div class="card text-center shadow-sm h-100">
-                <div class="card-body">
-                    <h5 class="card-title text-success">Total de Colaboradores</h5>
-                    <p class="card-text display-3">@ViewBag.TotalColaboradores</p>
-                    <a asp-controller="Colaboradores" asp-action="Index" class="btn btn-success mt-3">Ver Colaboradores</a>
+
+        <!-- Card 2: Total de Colaboradores -->
+        <div class="col-lg-3 col-md-6">
+            <div class="card metric-card shadow-lg h-100 border-0 rounded-3">
+                <div class="card-body d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Total de Colaboradores</h5>
+                        <i class="bi bi-people-fill fs-2"></i>
+                    </div>
+                    <!-- Cor do número em branco -->
+                    <p class="card-text display-4 fw-bold mt-2 flex-grow-1">@ViewBag.TotalColaboradores</p>
+                    <a asp-controller="Colaboradores" asp-action="Index" class="btn btn-outline-light btn-sm mt-3">Ver Detalhes</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: Próximos Eventos -->
+        <div class="col-lg-3 col-md-6">
+            <div class="card metric-card shadow-lg h-100 border-0 rounded-3">
+                <div class="card-body d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Eventos Cadastrados</h5>
+                        <i class="bi bi-calendar-event-fill fs-2"></i>
+                    </div>
+                    <!-- Cor do número em branco -->
+                    <p class="card-text display-4 fw-bold mt-2 flex-grow-1">@ViewBag.TotalEventos</p>
+                    <a asp-controller="Evento" asp-action="Index" class="btn btn-outline-light btn-sm mt-3">Gerenciar Eventos</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4: Funcionalidades Futuras (Roadmap) -->
+        <div class="col-lg-3 col-md-6">
+            <div class="card metric-card shadow-lg h-100 border-0 rounded-3">
+                <div class="card-body d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Próxima Fase</h5>
+                        <i class="bi bi-rocket-takeoff-fill fs-2"></i>
+                    </div>
+                    <!-- Cor do texto em branco -->
+                    <p class="card-text display-6 fw-bold mt-2 flex-grow-1">Listas e EPI</p>
+                    <button class="btn btn-outline-light btn-sm mt-3" 
+                            data-bs-toggle="modal" data-bs-target="#roadmapModal">
+                        Ver Roadmap
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-
-    <hr class="my-5">
-
-    <div class="row justify-content-center">
-        <div class="col-md-8 text-center">
-            <h2 class="text-secondary mb-4">O que você pode fazer com o UnitCheck?</h2>
-            <p class="fs-5">
-                O UnitCheck simplifica a organização e o controle das suas equipes. Cadastre colaboradores, crie equipes,
-                e gerencie facilmente quem faz parte de cada grupo. Tenha uma visão clara da sua força de trabalho e otimize
-                a gestão dos seus projetos.
+    
+    <!-- Seção 2: Chamadas para Ação e Funcionalidades -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-10 text-center p-4 border rounded-3 bg-light shadow-sm">
+            <h2 class="text-secondary mb-4 fw-bold">Gestão Simples, Controle Total</h2>
+            <p class="fs-5 text-muted">
+                O UnitCheck é a sua ferramenta para centralizar a gestão de recursos humanos. Cadastre colaboradores,
+                monte equipes dinâmicas e organize eventos com segurança e rastreabilidade.
             </p>
-            <div class="mt-4">
-                <a asp-controller="Equipe" asp-action="Criar" class="btn btn-outline-primary btn-lg me-3">
+            <div class="mt-4 d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a asp-controller="Equipe" asp-action="Criar" class="btn unitcheck-primary-bg btn-lg text-white shadow-sm">
                     <i class="bi bi-plus-circle"></i> Criar Nova Equipe
                 </a>
-                <a asp-controller="Colaboradores" asp-action="Criar" class="btn btn-outline-success btn-lg">
+                <a asp-controller="Colaboradores" asp-action="Criar" class="btn btn-success btn-lg shadow-sm">
                     <i class="bi bi-person-plus"></i> Adicionar Colaborador
+                </a>
+                <a asp-controller="Evento" asp-action="Criar" class="btn btn-info btn-lg text-white shadow-sm">
+                    <i class="bi bi-calendar-plus"></i> Criar Novo Evento
                 </a>
             </div>
         </div>
     </div>
 </div>
-<br><br>
+
+<!-- Modal para o Roadmap -->
+<div class="modal fade" id="roadmapModal" tabindex="-1" aria-labelledby="roadmapModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header unitcheck-dark-bg text-white">
+        <h5 class="modal-title" id="roadmapModalLabel">Roadmap UnitCheck - Próximas Fases</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="fw-bold">O UnitCheck foi desenvolvido com arquitetura modular para expansão:</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <i class="bi bi-check-circle-fill text-success me-2"></i> <span class="fw-bold">Fase 1 (Atual):</span> Gestão de Colaboradores, Equipes e Eventos.
+            </li>
+            <li class="list-group-item">
+                <i class="bi bi-arrow-right-circle-fill unitcheck-primary-text me-2"></i> <span class="fw-bold">Fase 2:</span> Módulo de Geração e Preenchimento de Listas de Presença (Digital/PDF).
+            </li>
+            <li class="list-group-item">
+                <i class="bi bi-arrow-right-circle-fill unitcheck-primary-text me-2"></i> <span class="fw-bold">Fase 3:</span> Controle de Estoque/Ativos (EPI e EPC) e Emissão de Termos de Responsabilidade.
+            </li>
+        </ul>
+        <div class="alert alert-info mt-3" role="alert">
+            Essa estrutura demonstra a viabilidade técnica e o planejamento de longo prazo do projeto.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

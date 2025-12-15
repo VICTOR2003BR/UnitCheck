@@ -14,21 +14,33 @@ public class HomeController : Controller
     private readonly ILogger<HomeController> _logger;
     private readonly IEquipeRepository _equipeRepository;
     private readonly IColaboradorRepository _colaboradorRepository;
+    private readonly IEventoRepository _eventoRepository;
 
 
-
-    public HomeController(ILogger<HomeController> logger, IEquipeRepository equipeRepository, IColaboradorRepository colaboradorRepository)
+    public HomeController(ILogger<HomeController> logger,
+                          IEquipeRepository equipeRepository,
+                          IColaboradorRepository colaboradorRepository,
+                          IEventoRepository eventoRepository)
     {
         _logger = logger;
         _equipeRepository = equipeRepository;
         _colaboradorRepository = colaboradorRepository;
-
+        _eventoRepository = eventoRepository;
     }
 
     public IActionResult Index()
     {
+        // 1. Métricas de Equipe e Colaborador (Assumindo métodos de contagem)
+        // Você precisará implementar ContarTotalEquipes() e ContarTotalColaboradores() nos respectivos repositórios.
         ViewBag.TotalEquipes = _equipeRepository.ListarEquipes().Count;
         ViewBag.TotalColaboradores = _colaboradorRepository.ListarColaboradores().Count;
+
+        // 2. Métrica de Eventos Cadastrados (Total Geral)
+        List<EventoModel> todosEventos = _eventoRepository.BuscarTodos();
+        ViewBag.TotalEventos = todosEventos.Count;
+
+        // 3. NOVO: Métrica de Eventos Pendentes (chamando o novo método do repositório)
+        ViewBag.TotalEventosPendentes = _eventoRepository.ContarEventosPendentes();
 
         return View();
     }

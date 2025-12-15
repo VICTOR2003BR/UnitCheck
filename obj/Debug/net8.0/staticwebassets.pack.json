@@ -53,6 +53,126 @@
       "PackagePath": "staticwebassets\\IMG\\logo.png"
     },
     {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Logo(sem_fundo).png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Logo(sem_fundo).png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Eventos_e_atividades.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Eventos_e_atividades.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\Logout.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\Logout.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\adicionar_colaborador01.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\adicionar_colaborador01.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\adicionar_colaborador02.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\adicionar_colaborador02.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\adicionar_colaborador03.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\adicionar_colaborador03.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\buscar_colaboradores.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\buscar_colaboradores.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\criacao_de_equipe02.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\criacao_de_equipe02.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\criacao_de_equipes01.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\criacao_de_equipes01.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\criacao_evento03.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\criacao_evento03.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\criar_evento.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\criar_evento.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\criar_evento02.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\criar_evento02.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\criar_evento03.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\criar_evento03.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\detalhes_da_equipe.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\detalhes_da_equipe.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\edicao_de_equipe.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\edicao_de_equipe.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\editar_deletar.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\editar_deletar.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\editar_evento01.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\editar_evento01.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\editar_evento02.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\editar_evento02.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\gerar_lista_evento.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\gerar_lista_evento.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\gerenciar_colaboradores.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\gerenciar_colaboradores.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\indicacao_registrar_usuario.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\indicacao_registrar_usuario.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\selecao_de_lider.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\selecao_de_lider.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\visualizar_evento.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\Indicacoes\\visualizar_evento.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\detalhes_evento.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\detalhes_evento.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\tela_de_colaboradores.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\tela_de_colaboradores.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\tela_de_equipes.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\tela_de_equipes.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\tela_de_login.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\tela_de_login.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\Screenshots\\tela_de_registrar.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\Screenshots\\tela_de_registrar.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\IMG\\logo.png",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\IMG\\logo.png"
+    },
+    {
+      "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\ManualDeUsuario\\Index.html",
+      "PackagePath": "staticwebassets\\ManualDeUsuario\\Index.html"
+    },
+    {
       "Id": "C:\\Projetos\\UnitCheck\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

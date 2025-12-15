@@ -1,7 +1,36 @@
-﻿@{
-    ViewData["Title"] = "Em Breve";
+﻿@*
+    View para páginas "Em Breve" / Funcionalidade em desenvolvimento.
+    Estilizada com um visual profissional usando Bootstrap.
+*@
+@{
+    ViewData["Title"] = "Funcionalidade em Desenvolvimento";
+    // Define um layout mais limpo, se necessário, ou usa o padrão.
+    // Layout = "_Layout";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Essa funcionalidade ainda está em desenvolvimento.</p>
+<div class="d-flex align-items-center justify-content-center text-center py-5" style="min-height: 70vh;">
+    <div class="p-5 border rounded-3 bg-light shadow-lg">
+        <!-- Ícone Grande e Chamativo -->
+        <i class="bi bi-code-slash display-1 text-primary mb-4 animate__animated animate__pulse animate__infinite" style="--animate-duration: 3s;"></i>
+        
+        <h1 class="display-4 fw-bold text-dark mb-3">
+            @ViewData["Title"]
+        </h1>
+        
+        <p class="lead text-secondary mb-4">
+            A funcionalidade que você está buscando ainda está em construção. 
+            Estamos trabalhando para liberá-la em breve com a melhor experiência possível.
+        </p>
 
+        <hr class="my-4">
+
+        <p class="text-muted">
+            Agradecemos sua paciência. Volte ao painel principal ou explore outras áreas.
+        </p>
+
+        <!-- Botão de Ação -->
+        <a asp-controller="Home" asp-action="Index" class="btn btn-primary btn-lg mt-3 shadow">
+            <i class="bi bi-arrow-left-circle me-2"></i> Voltar ao Dashboard
+        </a>
+    </div>
+</div>

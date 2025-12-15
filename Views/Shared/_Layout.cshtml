@@ -27,7 +27,8 @@
                     <ul class="navbar-nav flex-grow-1">
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Início</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home"
+                                asp-action="Index">Início</a>
                         </li>
 
                         <li class="nav-item">
@@ -58,6 +59,13 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home"
                                 asp-action="EmBreve">EPC's</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="@Url.Content(contentPath: "~/ManualDeUsuario/index.html")" target="_blank"
+                                class="nav-link text-dark" title="Abrir o manual do sistema">
+                                Ajuda
+                            </a>
                         </li>
 
                         @* <li class="nav-item">

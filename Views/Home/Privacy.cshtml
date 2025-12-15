@@ -1,7 +1,71 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
+﻿@*
+    View para a Política de Privacidade.
+    Estilizada com um visual profissional e formal.
+*@
+@{
+    ViewData["Title"] = "Política de Privacidade";
+    // Layout = "_Layout";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="container py-5">
+    <header class="mb-5 border-bottom pb-3">
+        <h1 class="display-4 fw-bold text-primary">
+            <i class="bi bi-shield-lock-fill me-3"></i>@ViewData["Title"]
+        </h1>
+        <p class="lead text-muted">Última atualização: 14 de Dezembro de 2025</p>
+    </header>
 
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+            <section class="mb-5">
+                <h2 class="h4 fw-bold text-dark mb-3">1. Introdução e Aceitação</h2>
+                <p>
+                    A sua privacidade é de extrema importância para nós. Esta Política de Privacidade descreve como o UnitCheck (doravante "nós", "nosso" ou "a Plataforma") coleta, usa e protege as suas informações pessoais ao utilizar nossos serviços de gestão de equipes e eventos. Ao acessar e utilizar o UnitCheck, você concorda com os termos desta Política.
+                </p>
+            </section>
+
+            <section class="mb-5">
+                <h2 class="h4 fw-bold text-dark mb-3">2. Informações Coletadas</h2>
+                <p>
+                    Coletamos informações necessárias para a gestão dos recursos humanos e operacionais. Isso inclui:
+                </p>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong class="text-primary">Dados de Identificação:</strong> Nomes, e-mails e identificadores de colaborador (ID de usuário).</li>
+                    <li class="list-group-item"><strong class="text-primary">Dados Operacionais:</strong> Informações relacionadas a equipes, eventos criados, status de tarefas e níveis de prioridade.</li>
+                    <li class="list-group-item"><strong class="text-primary">Dados de Uso:</strong> Logs de acesso, data e hora das ações e interações com a Plataforma.</li>
+                </ul>
+            </section>
+
+            <section class="mb-5">
+                <h2 class="h4 fw-bold text-dark mb-3">3. Uso das Informações</h2>
+                <p>As informações são utilizadas exclusivamente para:</p>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Permitir o acesso e uso das funcionalidades da Plataforma (gestão de equipes e eventos).</li>
+                    <li class="list-group-item">Garantir a segurança e integridade do sistema.</li>
+                    <li class="list-group-item">Melhorar a experiência do usuário e otimizar os serviços.</li>
+                </ul>
+            </section>
+
+            <section class="mb-5">
+                <h2 class="h4 fw-bold text-dark mb-3">4. Compartilhamento de Informações</h2>
+                <p>
+                    O UnitCheck não vende, aluga ou compartilha suas informações pessoais com terceiros para fins de marketing. O compartilhamento ocorre apenas quando estritamente necessário para a operação da plataforma (ex: serviços de hospedagem) ou para cumprir obrigações legais.
+                </p>
+            </section>
+
+            <section class="mb-5">
+                <h2 class="h4 fw-bold text-dark mb-3">5. Segurança</h2>
+                <p>
+                    Implementamos medidas de segurança técnicas e administrativas para proteger suas informações contra acesso não autorizado, alteração, divulgação ou destruição. No entanto, nenhum método de transmissão pela Internet ou método de armazenamento eletrônico é 100% seguro.
+                </p>
+            </section>
+
+            <section class="mb-5">
+                <h2 class="h4 fw-bold text-dark mb-3">6. Contato</h2>
+                <p>
+                    Se tiver dúvidas sobre esta Política de Privacidade ou sobre o tratamento dos seus dados, entre em contato conosco através do canal de suporte da sua organização.
+                </p>
+            </section>
+        </div>
+    </div>
+</div>

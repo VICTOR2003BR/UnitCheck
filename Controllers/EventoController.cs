@@ -34,7 +34,7 @@ public class EventoController : Controller
     public IActionResult Index()
     {
         // Busca todos os eventos, incluindo a Equipe associada.
-        List<EventoModel> eventos = _eventoRepository.BuscarTodos();
+        List<EventoModel> eventos = _eventoRepository.BuscarPendentes();
         return View(eventos);
     }
 

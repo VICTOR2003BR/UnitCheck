@@ -54,7 +54,20 @@ namespace UnitCheck.Repository
             return _context.Eventos.Include(e => e.Equipe).ToList();
         }
 
-        
+        public List<EventoModel> BuscarPendentes()
+        {
+            return _context.Eventos
+                .Where(e => e.Status == false) // Filtra onde Status é Pendente
+                .Include(e => e.Equipe)
+                .ToList();
+        }
+
+        public int ContarEventosPendentes()
+        {
+            // Filtra os eventos onde Status é false (Pendente) e conta o total.
+            // Status: true = Concluído, false = Pendente
+            return _context.Eventos.Count(e => e.Status == false);
+        }
 
 
     }
